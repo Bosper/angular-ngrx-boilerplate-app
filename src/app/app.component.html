@@ -1,20 +1,47 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
-</div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://github.com/angular/angular-cli/wiki">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
-
+<div><code>observable|async</code>: Time: {{ time | async }}</div>
+  <form 
+  *ngIf="messages; else loading"  
+  [formGroup]="formGroup" 
+  [connectForm]="'formGroup'">
+    <h1>{{ messages.authentication.title }}</h1>
+    <uland-text-field
+      [formGroup]="formGroup"
+      [controlName]="'name'"
+      [id]="'name'"
+      [label]="messages.authentication.name.label"
+      [placeholder]="messages.authentication.name.placeholder"
+      [isReadOnly]="false"
+    ></uland-text-field>
+    <uland-text-field
+      [formGroup]="formGroup"
+      [controlName]="'displayName'"
+      [id]="'displayName'"
+      [label]="messages.authentication.displayName.label"
+      [placeholder]="messages.authentication.displayName.placeholder"
+      [isReadOnly]="false"
+    ></uland-text-field>
+    <uland-email-field
+      [formGroup]="formGroup"
+      [controlName]="'email'"
+      [id]="'name'"
+      [label]="messages.authentication.email.label"
+      [placeholder]="messages.authentication.email.placeholder"
+      [isReadOnly]="false"
+    ></uland-email-field>
+    <checkbox-field
+      [formGroup]="formGroup"
+      [controlName]="'adult'"
+      [id]="'agreement'"
+      [label]="messages.authentication.adult.label"
+      [checked]=""
+      (click)="agreementCheck()"
+    >
+    </checkbox-field>
+    <button
+    mat-button
+    (click)="saveBaseInformation()"
+    >Next</button>
+  </form>
+<ng-template #loading>
+  Loading User...
+</ng-template>
