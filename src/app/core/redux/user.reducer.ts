@@ -17,9 +17,23 @@ const initialState: AppState = {
     users: []
 }
 
+const formState: AppState = {
+    formGroup: {
+        name: '',
+        displayName: 'Uland',
+        email: '',
+        adult: true
+    },
+    contact: {
+        email: '',
+        message: ''
+    },
+    users: []
+}
+
 const userState: User[] = [];
 
-export function formReducer(state: AppState = initialState, action) {
+export function formReducer(state: AppState = formState, action) {
     switch (action.type) {
 
         case UPDATE_FORM:
@@ -33,4 +47,8 @@ export function formReducer(state: AppState = initialState, action) {
         default:
             return state;
     }
+}
+
+export function mainReducer(state: AppState = formState, action) {
+
 }

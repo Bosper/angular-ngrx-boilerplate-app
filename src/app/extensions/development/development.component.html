@@ -1,4 +1,10 @@
-<p>
-  development works!
-</p>
-<cms-development-form></cms-development-form>
+<cms-stepper>
+</cms-stepper>
+<p>development works! {{ messages }}</p>
+<cms-development-form
+[messages]="messages"
+[formGroup]="formGroup">
+</cms-development-form>
+<cms-list
+[listItems$]='listItems$ | async'>
+</cms-list>

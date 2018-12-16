@@ -6,6 +6,9 @@ export interface AppState {
     users: User[];
 }
 
+export interface MainState {
+}
+
 export interface User {
     name: string;
     displayName: string;

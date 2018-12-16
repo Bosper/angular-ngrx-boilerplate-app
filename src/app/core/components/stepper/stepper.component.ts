@@ -1,4 +1,4 @@
-import {Component, OnInit, Input} from '@angular/core';
+import {Component, OnInit, Input, ElementRef} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 @Component({
@@ -7,14 +7,16 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
   styleUrls: ['./stepper.component.css']
 })
 export class StepperComponent implements OnInit {
-  // @Input() formGroup: FormGroup;
-
+  // @Input() firstFormGroup: FormGroup;
+  
   isLinear: boolean;
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
 
-  constructor(private _formBuilder: FormBuilder) {
+  constructor(private _formBuilder: FormBuilder, _er: ElementRef) {
     this.isLinear = true;
+
+    //ToDo Components
   }
 
   ngOnInit() {

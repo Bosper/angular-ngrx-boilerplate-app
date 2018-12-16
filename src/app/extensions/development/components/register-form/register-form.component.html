@@ -1,3 +1,45 @@
-<p>
-  register-form works!
-</p>
+<form 
+  *ngIf="messages; else loading"  
+  [formGroup]="formGroup" 
+  [connectForm]="'formGroup'">
+    <h1>{{ messages.authentication.title }}</h1>
+    <uland-text-field
+    [formGroup]="formGroup"
+    [controlName]="'name'"
+    [id]="'name'"
+    [label]="messages.authentication.name.label"
+    [placeholder]="messages.authentication.name.placeholder"
+    [isReadOnly]="false"
+    ></uland-text-field>
+    <uland-text-field
+    [formGroup]="formGroup"
+    [controlName]="'displayName'"
+    [id]="'displayName'"
+    [label]="messages.authentication.displayName.label"
+    [placeholder]="messages.authentication.displayName.placeholder"
+    [isReadOnly]="false"
+    ></uland-text-field>
+    <uland-email-field
+    [formGroup]="formGroup"
+    [controlName]="'email'"
+    [id]="'name'"
+    [label]="messages.authentication.email.label"
+    [placeholder]="messages.authentication.email.placeholder"
+    [isReadOnly]="false"
+    ></uland-email-field>
+    <cms-select-field
+    [formGroup]="formGroup"
+    [controlName]="'selectField'"
+    [id]="'selectList'"
+    [label]="messages.authentication.displayName.label"
+    [placeholder]="messages.authentication.email.placeholder">
+    </cms-select-field>
+    <checkbox-field
+    [formGroup]="formGroup"
+    [controlName]="'adult'"
+    [id]="'agreement'"
+    [label]="messages.authentication.adult.label"
+    [checked]=""
+    (click)="agreementCheck()">
+    </checkbox-field>
+</form>

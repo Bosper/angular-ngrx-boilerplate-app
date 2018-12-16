@@ -13,7 +13,7 @@ import {
 import { Observable, Subject, throwError, BehaviorSubject} from 'rxjs';
 import { map, tap, catchError, mapTo } from 'rxjs/operators';
 
-const MESSAGES: Object = {}
+const MESSAGES: Object[] = [];
 
 @Injectable({
   providedIn: 'root'
@@ -21,23 +21,13 @@ const MESSAGES: Object = {}
 //export class HelperService extends Http {
 export class HelperService {
 
-  private subject = new BehaviorSubject<Object>(MESSAGES);
-  messages$: Observable<Object> = this.subject.asObservable()
-
   API_END_POINT: string = 'http://localhost:4800/api';
   public token: string;
 
   constructor(
     private http: HttpClient,
-    // backend: XHRBackend,
-    // defaultOptions: AngularReduxRequestOptions,
   ) {
-    // super(backend, defaultOptions);
   }
-
-  loadMessages(messages:Object) {
-    this.subject.next(messages);
-}
 
   getUserData(): Observable<any> {
     return this.http.get<any>(this.API_END_POINT + '/userData');
