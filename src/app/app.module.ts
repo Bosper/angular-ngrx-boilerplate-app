@@ -4,12 +4,13 @@ import { FormsModule, ReactiveFormsModule, FormGroupDirective } from '@angular/f
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { StoreModule } from '@ngrx/store';
-import { NgrxFormsModule } from 'ngrx-forms';
-import { appReducer } from './core/redux/ngrx-forms-reducer';
+import { EffectsModule } from "@ngrx/effects";
+import { UserEffects } from "./core/redux/user.effects";
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 import { formReducer } from './core/redux/user.reducer';
 
-import { MatButtonModule, MatCheckboxModule, MatInputModule } from '@angular/material';
+import { MatButtonModule, MatCheckboxModule, MatInputModule, MatListModule, MatSelectModule, MatStepperModule } from '@angular/material';
 
 import { AppComponent } from './app.component';
 import { TextFieldComponent } from './core/components/form/text-field/text-field.component';
@@ -19,13 +20,18 @@ import { HelperService } from './core/services/helper.service';
 
 // Outer modules imports
 
-import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+
 import { environment } from '../environments/environment';
 
 import { HttpClientModule } from "@angular/common/http";
 import { EmailFieldComponent } from './core/components/form/email-field/email-field.component';
 import { CheckboxFieldComponent } from './core/components/form/checkbox-field/checkbox-field.component';
 import { ConnectFormDirective } from './core/directives/connect-form.directive';
+import { ListComponent } from './core/components/list/list.component';
+import { SelectFieldComponent } from './core/components/form/select-field/select-field.component';
+import { StepperComponent } from './core/components/stepper/stepper.component';
+
+import { DevelopmentModule } from "./extensions/development/development.module";
 
 
 @NgModule({
@@ -35,19 +41,26 @@ import { ConnectFormDirective } from './core/directives/connect-form.directive';
     PasswordFieldComponent,
     EmailFieldComponent,
     CheckboxFieldComponent,
-    ConnectFormDirective
+    ConnectFormDirective,
+    ListComponent,
+    SelectFieldComponent,
+    StepperComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
-    NgrxFormsModule,
+    DevelopmentModule,
     MatButtonModule,
     MatCheckboxModule,
     MatInputModule,
+    MatListModule,
+    MatSelectModule,
+    MatStepperModule,
     HttpClientModule,
     StoreModule.forRoot({formGroup: formReducer}),
+    EffectsModule.forRoot([UserEffects]),
     StoreDevtoolsModule.instrument({
       maxAge: 25,
       logOnly: environment.production,
@@ -55,6 +68,7 @@ import { ConnectFormDirective } from './core/directives/connect-form.directive';
     })
 
   ],
+  exports: [],
   providers: [HelperService, FormGroupDirective],
   bootstrap: [AppComponent]
 })

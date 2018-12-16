@@ -3,46 +3,49 @@ import { FormGroup, FormControl, FormControlName, FormGroupDirective } from "@an
 import { HelperService } from "./core/services/helper.service";
 
 import { Store, select, createSelector } from '@ngrx/store';
-import { FormGroupState } from 'ngrx-forms';
-import { AppState } from './core/redux/ngrx-forms-reducer';
+import { AppState, User, UPDATE_USER } from './core/models/models';
 import { RegisterBaseData } from "./core/models/base-data";
+
+import {getUsers} from './core/redux/form.actions';
 
 //Rxjs
 import { Observable, Subscription, Observer } from 'rxjs';
+import { take } from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
-  encapsulation: ViewEncapsulation.Native,
+  encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AppComponent {
-  // formState$: Observable<FormGroupState<RegisterBaseData>>;
   formGroup: FormGroup;
   model: Object;
+  listItems$: Observable<User[]>;
 
   messages: Observable<Object>;
   time: Observable<Object>;
   constructor(private helper: HelperService, private store: Store<AppState>, private cd: ChangeDetectorRef) {
-    // this.formState$ = store.select((form: AppState) => form.baseDataForm);
-    // this.formState$ = new Observable<FormGroupState<RegisterBaseData>>((observer: Observer<FormGroupState<RegisterBaseData>>) => {
-    //   store.select((form: AppState) => form.baseDataForm);
-    // });
 
+    this.store.dispatch(getUsers());
+    this.listItems$ = this.store.pipe(select(state => state.formGroup['users']));
+    this.store.select(state => state.formGroup['users']).subscribe(state => console.log('state: ', state));
+    
     this.time = new Observable<Object>((observer: Observer<Object>) => {
       setInterval(() => observer.next(new Date().toString()), 1000);
     });
+    
   }
 
   ngOnInit() {
     // ToDo Component
-    
     this.formGroup = new FormGroup({
       name: new FormControl(),
       displayName: new FormControl(),
       email: new FormControl(),
-      adult: new FormControl()
+      adult: new FormControl(),
+      selectField: new FormControl()
     });
 
     this.helper.getMessages().subscribe((data) => {
@@ -59,6 +62,17 @@ export class AppComponent {
 
   ngDoCheck() {
     this.cd.markForCheck();
+  }
+
+  checkStateItems() {
+    this.store.select(state => state.formGroup).subscribe(state => {
+      console.log('state_store: ', state)
+    });
+    
+  }
+
+  userUpdate(v: any) {
+    // this.store.dispatch({ v, type: UPDATE_USER })
   }
 
   // protected injectFormData() {
@@ -92,6 +106,5 @@ export class AppComponent {
   private agreementCheck() {
     // console.log('checkbox: ', !this.formGroup.get('agreement').value);
     // this.store.dispatch({ agreement: this.formGroup.get('agreement').value, type: TOGGLE_CHECKBOX })
-    // console.log('checkbox: ', !this.formGroup.get('agreement').value);
   }
 }

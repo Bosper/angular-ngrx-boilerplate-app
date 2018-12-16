@@ -1,20 +1,37 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Action } from '@ngrx/store';
+import { Action, ActionReducer } from '@ngrx/store';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { Observable, of } from 'rxjs';
-import { catchError, map, mergeMap } from 'rxjs/operators';
+import { catchError, map, mergeMap, switchMap } from 'rxjs/operators';
+
+import { ActionExt } from "../models/models";
+
+import { HelperService } from "../services/helper.service";
 
 @Injectable()
 export class UserEffects {
-    // Listen for the 'ADD' action
 
+    // Listen for 'GET' action
+    @Effect()
+    getUsers$: Observable<Action> = this.actions$.pipe(
+        ofType('GET_USERS'),
+        // switchMap(() => { return this.http.get<string>('http://localhost:4800/api/getUsers').pipe(map(users => ({ type: 'GET_USERS_SUCCESS', payload: JSON.parse(users) })),
+        switchMap(() => { return this.helperService.getUsers().pipe(map(users => ({ type: 'GET_USERS_SUCCESS', payload: JSON.parse(users) })),
+        catchError(error => of({ type: 'GET_USERS_ERROR', error: error })))})
+    )
+
+    // Listen for the 'ADD' action
     // @Effect()
-    // add$: Observable<Action> = this.actions$.pipe(
-    //     ofType('ADD')
+    // addUser$: Observable<ActionExt> = this.actions$.pipe(
+    //     ofType('ADD_USERS'),
+    //     mergeMap((action:ActionExt) => 
+    //     this.http.post('/loadUsers', action.payload)
+    //     .pipe(map(data => 
+    //         ({ type: 'LOGIN_SUCCESS', payload: data })),catchError(() => of({ type: 'LOGIN_FAILED' }))))
     // )
 
-    constructor(private http: HttpClient, private actions$: Actions) {
+    constructor(private http: HttpClient, private actions$: Actions, private helperService: HelperService) {
 
     }
 }

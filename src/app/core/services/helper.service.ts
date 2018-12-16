@@ -11,7 +11,7 @@ import {
 } from '@angular/http';
 
 import { Observable, Subject, throwError, BehaviorSubject} from 'rxjs';
-import { map, tap, catchError } from 'rxjs/operators';
+import { map, tap, catchError, mapTo } from 'rxjs/operators';
 
 const MESSAGES: Object = {}
 
@@ -24,7 +24,7 @@ export class HelperService {
   private subject = new BehaviorSubject<Object>(MESSAGES);
   messages$: Observable<Object> = this.subject.asObservable()
 
-  API_END_POINT: string = 'http://localhost:8080/api';
+  API_END_POINT: string = 'http://localhost:4800/api';
   public token: string;
 
   constructor(
@@ -45,6 +45,10 @@ export class HelperService {
 
   getMessages(): Observable<any> {
     return this.http.get<any>(this.API_END_POINT + '/messages');
+  }
+
+  getUsers() {
+    return this.http.get<string>(this.API_END_POINT + '/getUsers');
   }
 
 }

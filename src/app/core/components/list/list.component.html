@@ -1,0 +1,10 @@
+<mat-selection-list #items (selectionChange)="onSelection($event, items.selectedOptions.selected)">
+  <mat-list-option *ngFor="let item of listItems$" [selected]="item.adult" (click)="clickItem(item)" [value]="item">
+    {{item.displayName}}
+  </mat-list-option>
+</mat-selection-list>
+<p>
+  Options selected: {{items.selectedOptions.selected.length}}
+</p>
+
+<p>Items: {{ listItems$ | json }}</p>

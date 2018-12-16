@@ -1,0 +1,18 @@
+<div [formGroup]="formGroup">
+  <p>
+    <mat-checkbox [formControl]="disableSelect">Disable select</mat-checkbox>
+  </p>
+
+  <mat-form-field>
+    <mat-label>{{ label }}</mat-label>
+    <mat-select 
+    formControlName="{{controlName}}"
+    placeholder="{{placeholder}}"
+    [disabled]="disableSelect.value"
+    id="{{id}}">
+      <mat-option value="option1">Option 1</mat-option>
+      <mat-option value="option2" disabled>Option 2 (disabled)</mat-option>
+      <mat-option value="option3">Option 3</mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>

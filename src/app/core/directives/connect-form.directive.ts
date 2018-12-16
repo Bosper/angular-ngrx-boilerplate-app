@@ -1,11 +1,12 @@
-import { Directive, OnInit, Input, Injectable } from '@angular/core';
-import { Store, select } from "@ngrx/store";
+import { Directive, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Action, Store, select } from "@ngrx/store";
+import { Actions, Effect, ofType } from '@ngrx/effects';
 
 import { FormGroupDirective } from "@angular/forms";
 
-import { AppState, UPDATE_FORM } from "../models/models";
+import { AppState, UPDATE_FORM, FORM_SUBMIT_SUCCESS } from "../models/models";
 
-import { take } from 'rxjs/operators';
+import { take, filter } from 'rxjs/operators';
 import { Observable, Observer, Subscription } from 'rxjs';
 
 @Directive({
@@ -14,12 +15,15 @@ import { Observable, Observer, Subscription } from 'rxjs';
 
 export class ConnectFormDirective {
   @Input('connectForm') path: string;
+  @Output() success = new EventEmitter();
+
   formChange$: Subscription;
+  formSuccess$: Subscription;
 
   constructor(
     private formGroupDirective: FormGroupDirective,
     private store: Store<AppState>,
-    // private actions$ : Action
+    private actions$ : Actions
   ) {
 
   }
@@ -44,7 +48,17 @@ export class ConnectFormDirective {
             path: this.path, // newStory
           }
         });
-      })
+      });
+
+      // this.formSuccess$ = this.actions$
+      // .ofType(FORM_SUBMIT_SUCCESS)
+      // .filter(( { payload } ) => payload.path === this.path)
+      // .subscribe(() => {
+      //   this.formGroupDirective.form.reset();
+      //   this.success.emit();
+      // });
+
+      
   }
 
   ngOnDestroy() {

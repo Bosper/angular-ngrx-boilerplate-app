@@ -1,4 +1,6 @@
-<div><code>observable|async</code>: Time: {{ time | async }}</div>
+<!-- <div><code>observable|async</code>: Time: {{ time | async }}</div> -->
+<cms-stepper>
+</cms-stepper>
   <form 
   *ngIf="messages; else loading"  
   [formGroup]="formGroup" 
@@ -28,6 +30,13 @@
       [placeholder]="messages.authentication.email.placeholder"
       [isReadOnly]="false"
     ></uland-email-field>
+    <cms-select-field
+      [formGroup]="formGroup"
+      [controlName]="'selectField'"
+      [id]="'selectList'"
+      [label]="messages.authentication.displayName.label"
+      [placeholder]="messages.authentication.email.placeholder">
+    </cms-select-field>
     <checkbox-field
       [formGroup]="formGroup"
       [controlName]="'adult'"
@@ -41,7 +50,9 @@
     mat-button
     (click)="saveBaseInformation()"
     >Next</button>
+    <cms-development></cms-development>
   </form>
+  <cms-list [listItems$]='listItems$ | async'></cms-list>
 <ng-template #loading>
   Loading User...
 </ng-template>
