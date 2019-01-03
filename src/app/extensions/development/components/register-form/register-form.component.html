@@ -1,8 +1,8 @@
-<form 
+<form
   *ngIf="messages; else loading"  
   [formGroup]="formGroup" 
-  [connectForm]="'formGroup'">
-    <h1>{{ messages.authentication.title }}</h1>
+  [connectFormSingle]="'formGroup'">
+  <h1>{{ messages.authentication.title }}</h1>
     <uland-text-field
     [formGroup]="formGroup"
     [controlName]="'name'"
@@ -43,3 +43,6 @@
     (click)="agreementCheck()">
     </checkbox-field>
 </form>
+<h1>TEST</h1>
+FG: <p>{{ formGroup }}</p>M: <p>{{ messages | json} }</p>
+

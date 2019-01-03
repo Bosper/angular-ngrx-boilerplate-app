@@ -1,36 +1,30 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from "@angular/common/http";
 import { FormsModule, ReactiveFormsModule, FormGroupDirective } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { ControlsModule } from "./core/modules/controls/controls.module";
+import { MaterialModule } from "./core/modules/material/material.module";
+
+import { DevelopmentModule } from "./extensions/development/development.module";
 
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from "@ngrx/effects";
 import { UserEffects } from "./core/redux/user.effects";
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
-import { formReducer } from './core/redux/user.reducer';
-
-
+import { HelperService } from './core/services/helper.service';
 
 import { AppComponent } from './app.component';
 
-import { ControlsModule } from "./core/modules/controls/controls.module";
-import { MaterialModule } from "./core/modules/material/material.module";
-
-
-import { HelperService } from './core/services/helper.service';
-
 // Outer modules imports
+import { mainReducer } from './core/redux/user.reducer';
 import { environment } from '../environments/environment';
-
-import { HttpClientModule } from "@angular/common/http";
-
-import { DevelopmentModule } from "./extensions/development/development.module";
-
 
 @NgModule({
   declarations: [
-    AppComponent,
+    AppComponent
   ],
   imports: [
     BrowserModule,
@@ -41,7 +35,7 @@ import { DevelopmentModule } from "./extensions/development/development.module";
       ControlsModule,
       MaterialModule,
     HttpClientModule,
-    StoreModule.forRoot({formGroup: formReducer}),
+    StoreModule.forRoot({reducer: mainReducer}),
     EffectsModule.forRoot([UserEffects]),
     StoreDevtoolsModule.instrument({
       maxAge: 25,

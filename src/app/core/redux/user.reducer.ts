@@ -1,14 +1,30 @@
 import { Action, ActionReducer } from '@ngrx/store';
 import { FormGroupState, createFormGroupState, formGroupReducer } from 'ngrx-forms';
 
-import { AppState, UPDATE_FORM, GET_USERS, GET_USERS_ERROR, FORM_SUBMIT_SUCCESS, GET_USERS_SUCCESS, UPDATE_USER, User } from "../models/models";
+import { AppState, UPDATE_FORM, UPDATE_FORM_SINGLE, GET_USERS, GET_USERS_ERROR, FORM_SUBMIT_SUCCESS, GET_USERS_SUCCESS, UPDATE_USER_DATA, BaseData, RegisterFormState, AppStateEXT } from "../models/models";
 
-const initialState: AppState = {
+const initialState: AppStateEXT = {
+    formGroupNested: {
+        formGroup1: {
+            name: 'husky999',
+            displayName: 'Uland Nimblehoof',
+            email: '',
+            adult: true
+            },
+        formGroup2: {
+            firstName: 'Uland', 
+            lastName: 'Nimblehoof'
+        } 
+    },
     formGroup: {
-        name: '',
-        displayName: 'Uland',
+        name: 'husky999',
+        displayName: 'Malcom Nimblehoof',
         email: '',
-        adult: true
+        adult: false
+    },
+    formGroupExtended: {
+        firstName: 'Malcom',
+        lastName: 'Nimblehoof',
     },
     contact: {
         email: '',
@@ -25,30 +41,35 @@ const formState: AppState = {
         adult: true
     },
     contact: {
-        email: '',
-        message: ''
+            email: '',
+            message: ''
     },
     users: []
 }
 
-const userState: User[] = [];
+const userState: BaseData[] = [];
 
-export function formReducer(state: AppState = formState, action) {
+export function mainReducer(state: AppStateEXT = initialState, action) {
     switch (action.type) {
 
         case UPDATE_FORM:
+            return { ...state, [action.payload.path.formGroupNested]: action.payload.value} 
+
+        case UPDATE_FORM_SINGLE:
             return { ...state, [action.payload.path]: action.payload.value }
+
         case GET_USERS:
             return { ...state }
+
         case GET_USERS_SUCCESS:
             return { ...state, users: action.payload }
-        // case UPDATE_USER:
-        //     return { ...state, users: action.payload }
+
+        case UPDATE_USER_DATA:
+            const updatedUser = {...action.payload.value, adult: action.payload.option};
+
+            return { ...state, users: state.users.map((user) => user.id === updatedUser.id ? updatedUser : {...user})}
+
         default:
             return state;
     }
-}
-
-export function mainReducer(state: AppState = formState, action) {
-
 }

@@ -4,18 +4,17 @@ import { Actions, Effect, ofType } from '@ngrx/effects';
 
 import { FormGroupDirective } from "@angular/forms";
 
-import { AppState, UPDATE_FORM, FORM_SUBMIT_SUCCESS } from "../models/models";
+import { AppState, UPDATE_FORM, FORM_SUBMIT_SUCCESS, UPDATE_FORM_SINGLE } from "../models/models";
 
 import { take, filter } from 'rxjs/operators';
 import { Observable, Observer, Subscription } from 'rxjs';
 
 @Directive({
-  selector: '[connectForm]'
+  selector: '[connectFormSingle]'
 })
 
-export class ConnectFormDirective {
-  // @Input('connectForm') path: string;
-  @Input('connectForm') path: any;
+export class ConnectFormSingleDirective {
+  @Input('connectFormSingle') path: string;
   @Output() success = new EventEmitter();
 
   formChange$: Subscription;
@@ -23,7 +22,7 @@ export class ConnectFormDirective {
 
   constructor(
     private formGroupDirective: FormGroupDirective,
-    private store: Store<AppState>,
+    private store: Store<any>,
     private actions$ : Actions
   ) {
 
@@ -36,8 +35,8 @@ export class ConnectFormDirective {
     .pipe(select('reducer'))
     .pipe(take(1))
     .subscribe(val => {
-      console.log('patchvalue: ', val, this.path), 
-      this.path.formGroups.forEach(formGroup => this.formGroupDirective.form.controls[formGroup].patchValue(val.formGroupNested[formGroup]));
+      console.log('patchvalue2: ', val, this.path, this.formGroupDirective), 
+      this.formGroupDirective.form.patchValue(val[this.path]);
     })
       
 
@@ -46,7 +45,7 @@ export class ConnectFormDirective {
         console.log('FORM_CHANGE: ', value, '\nPATH: ', this.path, this.formGroupDirective);
 
         this.store.dispatch({
-          type: UPDATE_FORM,
+          type: UPDATE_FORM_SINGLE,
           payload: {
             value,
             path: this.path, // newStory

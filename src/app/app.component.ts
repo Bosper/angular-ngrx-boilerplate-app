@@ -2,7 +2,7 @@ import { Component, ViewEncapsulation, ChangeDetectionStrategy, ChangeDetectorRe
 import { HelperService } from "./core/services/helper.service";
 
 import { Store, select, createSelector } from '@ngrx/store';
-import { AppState} from './core/models/models';
+import { AppState, AppStateEXT} from './core/models/models';
 
 //Rxjs
 import { Observable } from 'rxjs';
@@ -19,7 +19,7 @@ export class AppComponent {
   model: Object;
   messages: Observable<Object>;
 
-  constructor(private helper: HelperService, private store: Store<AppState>, private cd: ChangeDetectorRef) {
+  constructor(private helper: HelperService, private store: Store<AppStateEXT>, private cd: ChangeDetectorRef) {
   }
 
   ngOnInit() {

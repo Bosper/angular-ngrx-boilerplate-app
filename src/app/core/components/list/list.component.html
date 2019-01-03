@@ -1,6 +1,6 @@
-<mat-selection-list #items (selectionChange)="onSelection($event, items.selectedOptions.selected)">
+<mat-selection-list #items (selectionChange)="onSelection($event, items)" [hidden]="!listItems$">
   <mat-list-option *ngFor="let item of listItems$" [selected]="item.adult" (click)="clickItem(item)" [value]="item">
-    {{item.displayName}}
+    {{item.displayName}},{{item.adult}}
   </mat-list-option>
 </mat-selection-list>
 <p>

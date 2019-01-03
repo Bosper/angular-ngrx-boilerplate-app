@@ -13,6 +13,13 @@ import {
 import { Observable, Subject, throwError, BehaviorSubject} from 'rxjs';
 import { map, tap, catchError, mapTo } from 'rxjs/operators';
 
+import { RegisterFormComponent } from "../../extensions/development/components/register-form/register-form.component";
+import { ExtendedFormComponent } from "../../extensions/development/components/extended-form/extended-form.component";
+import { AdItem } from "../models/models";
+
+const REGISTER_FORM_COMPONENT: string = 'REGISTER_FORM_COMPONENT';
+const EXTENDED_FORM_COMPONENT: string = 'EXTENDED_FORM_COMPONENT';
+
 const MESSAGES: Object[] = [];
 
 @Injectable({
@@ -39,6 +46,26 @@ export class HelperService {
 
   getUsers() {
     return this.http.get<string>(this.API_END_POINT + '/getUsers');
+  }
+
+  updateUser(user): Observable<any> {
+    return this.http.post<string>(this.API_END_POINT + '/getUsers', JSON.stringify(user), {withCredentials: true});
+  }
+
+  getComponent(component: string) {
+    console.log('serv: ', component);
+    
+    switch (component) {
+      case REGISTER_FORM_COMPONENT:
+        return new AdItem(RegisterFormComponent, '')
+        break;
+
+      case EXTENDED_FORM_COMPONENT:
+        return new AdItem(ExtendedFormComponent, '')
+    
+      default:
+        break;
+    }
   }
 
 }

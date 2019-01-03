@@ -21,6 +21,12 @@ export class UserEffects {
         catchError(error => of({ type: 'GET_USERS_ERROR', error: error })))})
     )
 
+    // @Effect()
+    // updateUser$: Observable<Action> = this.actions$.pipe(
+    //     ofType('UPDATE_USER_DATA'),
+    //     switchMap((user) => { return this.helperService.updateUsers(user).pipe(map(users => ({ type: 'UPDATE_USER_DATA_SUCCESS', payload: JSON.parse(users) })),
+    // )
+
     // Listen for the 'ADD' action
     // @Effect()
     // addUser$: Observable<ActionExt> = this.actions$.pipe(

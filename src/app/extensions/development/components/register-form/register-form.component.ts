@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef, Input } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Input, ViewContainerRef, ViewChild} from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, FormControlName, FormGroupDirective } from "@angular/forms";
 
 @Component({
@@ -7,23 +7,19 @@ import { FormBuilder, FormGroup, FormControl, FormControlName, FormGroupDirectiv
   styleUrls: ['./register-form.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class RegisterFormComponent implements OnInit {
+export class RegisterFormComponent implements OnInit, AfterViewInit {
   @Input() messages: Object;
   @Input() formGroup: FormGroup;
-  
-  constructor(private _cd: ChangeDetectorRef) { }
+  constructor(private _cd: ChangeDetectorRef, public _vc: ViewContainerRef) { }
 
   ngOnInit() {
-    console.log("FB: ", this.formGroup);
-    
   }
 
   ngOnChange() {
     this._cd.markForCheck();
   }
 
-  private agreementCheck() {
-    
+  ngAfterViewInit() {
   }
 
 }

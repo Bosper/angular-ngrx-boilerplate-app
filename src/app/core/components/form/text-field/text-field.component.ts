@@ -1,5 +1,5 @@
 import { Component, Input, OnInit, EventEmitter, Output } from '@angular/core';
-import { FormGroup, FormControl } from "@angular/forms";
+import { FormGroupName, FormGroup, FormControl } from "@angular/forms";
 
 @Component({
   selector: 'uland-text-field',
@@ -9,6 +9,7 @@ import { FormGroup, FormControl } from "@angular/forms";
 export class TextFieldComponent implements OnInit {
   @Output() change: EventEmitter<any> = new EventEmitter();
   @Input('formGroup') formGroup: FormGroup;
+  @Input('formGroupName') formGroupName: FormGroupName;
   @Input('controlName') controlName: string;
   @Input('label') label: string;
   // @Input('value') value: string;
@@ -22,7 +23,7 @@ export class TextFieldComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.formGroup, this.controlName);
+    console.log('cname', this.formGroup, this.controlName);
   }
 
   ngOnChanges () {

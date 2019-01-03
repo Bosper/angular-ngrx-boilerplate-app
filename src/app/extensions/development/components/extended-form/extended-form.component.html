@@ -1,0 +1,22 @@
+<form
+  *ngIf="messages; else loading"  
+  [formGroup]="formGroup" 
+  [connectFormSingle]="'formGroupExtended'">
+  <h1>{{ messages.authentication.title }}</h1>
+    <uland-text-field
+    [formGroup]="formGroup"
+    [controlName]="'firstName'"
+    [id]="'firstName'"
+    [label]="messages.authentication.name.label"
+    [placeholder]="messages.authentication.name.placeholder"
+    [isReadOnly]="false"
+    ></uland-text-field>
+    <uland-text-field
+    [formGroup]="formGroup"
+    [controlName]="'lastName'"
+    [id]="'lastName'"
+    [label]="messages.authentication.displayName.label"
+    [placeholder]="messages.authentication.displayName.placeholder"
+    [isReadOnly]="false"
+    ></uland-text-field>
+  </form>

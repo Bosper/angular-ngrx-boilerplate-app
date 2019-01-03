@@ -8,22 +8,24 @@ import { ControlsModule } from "../../core/modules/controls/controls.module";
 import { MaterialModule } from "../../core/modules/material/material.module";
 
 import { ConnectFormDirective } from '../../core/directives/connect-form.directive';
-import { StoreModule } from '@ngrx/store';
-import { formReducer } from '../../core/redux/user.reducer';
-import { EffectsModule } from "@ngrx/effects";
-import { UserEffects } from "../../core/redux/user.effects";
-import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-
+import { ConnectFormSingleDirective } from '../../core/directives/connect-form-single.directive';
+import { ComponentLoaderDirective } from '../../core/directives/component-loader.directive';
 import { HelperService } from '../../core/services/helper.service';
 
 import { StepperComponent } from '../../core/components/stepper/stepper.component';
 import { ListComponent } from '../../core/components/list/list.component';
+import { DynamicComponentLoader } from '../../core/components/dynamic-component-loader/dynamic-component-loader.component';
+import { ExtendedFormComponent } from './components/extended-form/extended-form.component';
 
 @NgModule({
   declarations: [
     DevelopmentComponent,
     RegisterFormComponent,
+    ExtendedFormComponent,
     ConnectFormDirective,
+    ConnectFormSingleDirective,
+    ComponentLoaderDirective,
+    DynamicComponentLoader,
     StepperComponent,
     ListComponent
   ],
@@ -33,13 +35,16 @@ import { ListComponent } from '../../core/components/list/list.component';
     ReactiveFormsModule,
     ControlsModule,
     MaterialModule,
-    StoreModule.forFeature("Development Module",{formGroup: formReducer}),
-    EffectsModule.forRoot([UserEffects]),
   ],
   exports: [
     DevelopmentComponent,
-    ConnectFormDirective
+    ConnectFormDirective,
+    ConnectFormSingleDirective,
+    ComponentLoaderDirective,
+    DynamicComponentLoader,
+    StepperComponent
   ],
-  providers: [HelperService, FormGroupDirective]
+  providers: [HelperService, FormGroupDirective,],
+  entryComponents: [RegisterFormComponent, ExtendedFormComponent]
 })
 export class DevelopmentModule {}
