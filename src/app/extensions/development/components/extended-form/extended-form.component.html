@@ -19,4 +19,10 @@
     [placeholder]="messages.authentication.displayName.placeholder"
     [isReadOnly]="false"
     ></uland-text-field>
+    <cms-radio-field
+    [formGroup]="formGroup"
+    [controlName]="'question'"
+    [name]="'question'"
+    [opts]="shared$ | async"
+    ></cms-radio-field>
   </form>

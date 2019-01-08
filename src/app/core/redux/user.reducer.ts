@@ -1,7 +1,7 @@
 import { Action, ActionReducer } from '@ngrx/store';
 import { FormGroupState, createFormGroupState, formGroupReducer } from 'ngrx-forms';
 
-import { AppState, UPDATE_FORM, UPDATE_FORM_SINGLE, GET_USERS, GET_USERS_ERROR, FORM_SUBMIT_SUCCESS, GET_USERS_SUCCESS, UPDATE_USER_DATA, BaseData, RegisterFormState, AppStateEXT } from "../models/models";
+import { AppState, GET_MESSAGES, GET_MESSAGES_SUCCESS, UPDATE_FORM, UPDATE_FORM_SINGLE, GET_USERS, GET_USERS_ERROR, FORM_SUBMIT_SUCCESS, GET_USERS_SUCCESS, UPDATE_USER_DATA, BaseData, RegisterFormState, AppStateEXT } from "../models/models";
 
 const initialState: AppStateEXT = {
     formGroupNested: {
@@ -30,27 +30,38 @@ const initialState: AppStateEXT = {
         email: '',
         message: ''
     },
-    users: []
-}
-
-const formState: AppState = {
-    formGroup: {
-        name: '',
-        displayName: 'Uland',
-        email: '',
-        adult: true
-    },
-    contact: {
-            email: '',
-            message: ''
-    },
-    users: []
+    users: [],
+    shared: {
+        radio_opt: [
+            {
+                message: 'Yes, of course',
+                value: '0'
+            },
+            {
+                message: 'Doesn\'t matter...',
+                value: '1'
+            },
+            {
+                message: 'Hell, no f* way!',
+                value: '2'
+            }
+        ],
+        translations: null
+    }
 }
 
 const userState: BaseData[] = [];
 
 export function mainReducer(state: AppStateEXT = initialState, action) {
     switch (action.type) {
+
+        case GET_MESSAGES:
+            return { ...state }
+
+        case GET_MESSAGES_SUCCESS:
+            const trans = { ...action.payload };
+
+            return { ...state,  translations: state.shared.translations = trans }
 
         case UPDATE_FORM:
             return { ...state, [action.payload.path.formGroupNested]: action.payload.value} 

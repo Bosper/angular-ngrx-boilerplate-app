@@ -5,6 +5,7 @@ import {
   MatButtonModule, 
   MatCheckboxModule, 
   MatInputModule, 
+  MatRadioModule,
   MatListModule, 
   MatSelectModule, 
   MatStepperModule
@@ -17,6 +18,7 @@ import {
     MatButtonModule, 
     MatCheckboxModule, 
     MatInputModule, 
+    MatRadioModule,
     MatListModule, 
     MatSelectModule, 
     MatStepperModule 
@@ -25,6 +27,7 @@ import {
     MatButtonModule, 
     MatCheckboxModule, 
     MatInputModule, 
+    MatRadioModule,
     MatListModule, 
     MatSelectModule, 
     MatStepperModule

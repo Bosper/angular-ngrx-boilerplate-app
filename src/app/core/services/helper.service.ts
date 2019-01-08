@@ -15,10 +15,12 @@ import { map, tap, catchError, mapTo } from 'rxjs/operators';
 
 import { RegisterFormComponent } from "../../extensions/development/components/register-form/register-form.component";
 import { ExtendedFormComponent } from "../../extensions/development/components/extended-form/extended-form.component";
+import { NestedFormComponent } from "../../extensions/development/components/nested-form/nested-form.component";
 import { AdItem } from "../models/models";
 
 const REGISTER_FORM_COMPONENT: string = 'REGISTER_FORM_COMPONENT';
 const EXTENDED_FORM_COMPONENT: string = 'EXTENDED_FORM_COMPONENT';
+const NESTED_FORM_COMPONENT: string = 'NESTED_FORM_COMPONENT';
 
 const MESSAGES: Object[] = [];
 
@@ -62,7 +64,10 @@ export class HelperService {
 
       case EXTENDED_FORM_COMPONENT:
         return new AdItem(ExtendedFormComponent, '')
-    
+        break;
+
+        case NESTED_FORM_COMPONENT:
+          return new AdItem(NestedFormComponent, '')
       default:
         break;
     }

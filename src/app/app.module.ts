@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID} from '@angular/core';
 import { HttpClientModule } from "@angular/common/http";
 import { FormsModule, ReactiveFormsModule, FormGroupDirective } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -21,10 +21,13 @@ import { AppComponent } from './app.component';
 // Outer modules imports
 import { mainReducer } from './core/redux/user.reducer';
 import { environment } from '../environments/environment';
+import { RadioGroupFieldComponent } from './core/components/form/radio-group-field/radio-group-field.component';
+import { CmsRoutingModule } from './cms-routing.module';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    RadioGroupFieldComponent
   ],
   imports: [
     BrowserModule,
@@ -41,7 +44,8 @@ import { environment } from '../environments/environment';
       maxAge: 25,
       logOnly: environment.production,
       name: 'Redux Store',
-    })
+    }),
+    CmsRoutingModule
 
   ],
   exports: [],

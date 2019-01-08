@@ -16,7 +16,7 @@ export class ListComponent implements OnInit {
 
   // Dynamic component can have type any[]
   @Input() listItems$: Observable<User[]>;
-  constructor(private cd: ChangeDetectorRef, private ef: ElementRef, private store: Store<AppStateEXT>) { }
+  constructor(private cd: ChangeDetectorRef, private ef: ElementRef, private store: Store<any>) { }
   
   ngOnInit() {
 

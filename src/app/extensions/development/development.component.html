@@ -1,69 +1,9 @@
 <cms-stepper
 [formGroup]="formGroup"
 [formGroup2]="formGroup2"
-[messages]="messages">
+[messages]="translations$ | async"
+[steps]="steps">
 </cms-stepper>
 <cms-list
 [listItems$]='listItems$ | async'>
 </cms-list>
-
-<!-- <form
-  *ngIf="messages; else loading"  
-  [formGroup]="formGroupNested"
-  [connectForm]="forms">
-    <div
-      formGroupName="formGroup1">
-      <h1>{{ messages.authentication.form.steps.one.title }}</h1>
-      <uland-text-field
-      [formGroup]="formGroupNested.controls.formGroup1"
-      [controlName]="'name'"
-      [id]="'name'"
-      [label]="messages.authentication.name.label"
-      [placeholder]="messages.authentication.name.placeholder"
-      [isReadOnly]="false"
-      ></uland-text-field>
-      <uland-text-field
-      [formGroup]="formGroupNested.controls.formGroup1"
-      [controlName]="'displayName'"
-      [id]="'displayName'"
-      [label]="messages.authentication.displayName.label"
-      [placeholder]="messages.authentication.displayName.placeholder"
-      [isReadOnly]="false"
-      ></uland-text-field>
-      <uland-email-field
-      [formGroup]="formGroupNested.controls.formGroup1"
-      [controlName]="'email'"
-      [id]="'name'"
-      [label]="messages.authentication.email.label"
-      [placeholder]="messages.authentication.email.placeholder"
-      [isReadOnly]="false"
-      ></uland-email-field>
-      <cms-select-field
-      [formGroup]="formGroupNested.controls.formGroup1"
-      [controlName]="'selectField'"
-      [id]="'selectList'"
-      [label]="messages.authentication.displayName.label"
-      [placeholder]="messages.authentication.email.placeholder">
-      </cms-select-field>
-      <checkbox-field
-      [formGroup]="formGroupNested.controls.formGroup1"
-      [controlName]="'adult'"
-      [id]="'agreement'"
-      [label]="messages.authentication.adult.label"
-      [checked]=""
-      (click)="agreementCheck()">
-      </checkbox-field>
-    </div>
-    <div 
-      formGroupName="formGroup2">
-      <h1>{{ messages.authentication.form.steps.two.title }}</h1>
-      <uland-text-field
-        [formGroup]="formGroupNested.controls.formGroup2"
-        [controlName]="'firstName'"
-        [id]="'firstName'"
-        [label]="messages.authentication.firstName.label"
-        [placeholder]="messages.authentication.firstName.placeholder"
-        [isReadOnly]="false"
-        ></uland-text-field>
-    </div>
-</form> -->

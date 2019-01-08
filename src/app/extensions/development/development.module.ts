@@ -16,6 +16,7 @@ import { StepperComponent } from '../../core/components/stepper/stepper.componen
 import { ListComponent } from '../../core/components/list/list.component';
 import { DynamicComponentLoader } from '../../core/components/dynamic-component-loader/dynamic-component-loader.component';
 import { ExtendedFormComponent } from './components/extended-form/extended-form.component';
+import { NestedFormComponent } from './components/nested-form/nested-form.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { ExtendedFormComponent } from './components/extended-form/extended-form.
     ComponentLoaderDirective,
     DynamicComponentLoader,
     StepperComponent,
-    ListComponent
+    ListComponent,
+    NestedFormComponent
   ],
   imports: [
     CommonModule,
@@ -45,6 +47,6 @@ import { ExtendedFormComponent } from './components/extended-form/extended-form.
     StepperComponent
   ],
   providers: [HelperService, FormGroupDirective,],
-  entryComponents: [RegisterFormComponent, ExtendedFormComponent]
+  entryComponents: [RegisterFormComponent, ExtendedFormComponent, NestedFormComponent]
 })
 export class DevelopmentModule {}

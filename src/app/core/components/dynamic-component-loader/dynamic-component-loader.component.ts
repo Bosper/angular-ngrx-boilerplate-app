@@ -9,20 +9,14 @@ import {
   AfterViewInit, 
   ChangeDetectorRef, 
   ViewChild, 
-  ViewContainerRef,
   ComponentRef,
   ComponentFactoryResolver,
   ChangeDetectionStrategy } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 
 import { ComponentLoaderDirective } from "../../directives/component-loader.directive";
-
-import { RegisterFormComponent } from "../../../extensions/development/components/register-form/register-form.component";
 import { HelperService } from "../../services/helper.service";
 import { AdItem } from "../../models/models";
-import { Type } from '@angular/compiler';
-
-const REGISTER_FORM_COMPONENT: string = 'REGISTER_FORM_COMPONENT';
 
 @Component({
   selector: 'dynamic-component-loader',
@@ -36,7 +30,6 @@ export class DynamicComponentLoader implements OnInit, OnChanges, OnDestroy, Aft
   @Input() formGroup: FormGroup;
   @Input() messages: Object;
   @Input() componentId: string;
-  // @Input() formGroups: FormGroup[];
 
   @ViewChild(ComponentLoaderDirective) componentLoader: ComponentLoaderDirective;
 
@@ -77,8 +70,5 @@ export class DynamicComponentLoader implements OnInit, OnChanges, OnDestroy, Aft
 
     componentRef.instance.formGroup = this.formGroup;
     componentRef.instance.messages = this.messages;
-
-    console.log('vcr: ', viewContainerRef);
-
   }
 }

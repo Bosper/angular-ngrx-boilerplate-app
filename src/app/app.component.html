@@ -1,9 +1,10 @@
 <div *ngIf="messages; else loading">
-  <cms-development
-    [messages]="messages">
-  </cms-development>
-
+<nav>
+    <a routerLink="/development" routerLinkActive="active">Development</a>
+  </nav>
+<router-outlet></router-outlet>
 </div>
+
 <ng-template #loading>
   Loading User...
 </ng-template>

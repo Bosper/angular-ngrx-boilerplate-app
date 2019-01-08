@@ -1,0 +1,11 @@
+<div [formGroup]="formGroup">
+  <mat-radio-group 
+  [name]="name"
+  formControlName="{{controlName}}">
+  <mat-radio-button 
+  *ngFor="let opt of opts"
+  value="{{opt.value}}">{{opt.message}}
+  </mat-radio-button>
+  </mat-radio-group>
+  <p>Radio value: {{ this.formGroup.controls['question'].value }}</p>
+</div>{{ opts | json }}

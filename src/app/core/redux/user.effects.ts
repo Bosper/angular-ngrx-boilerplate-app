@@ -12,15 +12,27 @@ import { HelperService } from "../services/helper.service";
 @Injectable()
 export class UserEffects {
 
+    // Listen for 'GET MESSAGES' action
+    @Effect()
+    getTranslation$: Observable<Action> = this.actions$.pipe(
+        ofType('GET_MESSAGES'),
+        switchMap(() => {
+            return this.helperService.getMessages().pipe(map(messages => ({ type: 'GET_MESSAGES_SUCCESS', payload: JSON.parse(messages) })),
+                catchError(error => of({ type: 'GET_MESSAGES_ERROR', error: error })))
+        })
+    )
+
     // Listen for 'GET' action
     @Effect()
     getUsers$: Observable<Action> = this.actions$.pipe(
         ofType('GET_USERS'),
-        // switchMap(() => { return this.http.get<string>('http://localhost:4800/api/getUsers').pipe(map(users => ({ type: 'GET_USERS_SUCCESS', payload: JSON.parse(users) })),
-        switchMap(() => { return this.helperService.getUsers().pipe(map(users => ({ type: 'GET_USERS_SUCCESS', payload: JSON.parse(users) })),
-        catchError(error => of({ type: 'GET_USERS_ERROR', error: error })))})
+        switchMap(() => {
+            return this.helperService.getUsers().pipe(map(users => ({ type: 'GET_USERS_SUCCESS', payload: JSON.parse(users) })),
+                catchError(error => of({ type: 'GET_USERS_ERROR', error: error })))
+        })
     )
 
+    // Listen for the 'UPDATE' action
     // @Effect()
     // updateUser$: Observable<Action> = this.actions$.pipe(
     //     ofType('UPDATE_USER_DATA'),

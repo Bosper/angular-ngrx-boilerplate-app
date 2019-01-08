@@ -27,6 +27,7 @@ export interface AppStateEXT {
     formGroupExtended: ExtendedForm;
     contact: Contact;
     users: User[];
+    shared: Shared;
 }
 
 export interface RegisterFormState {
@@ -39,6 +40,12 @@ export interface BaseData {
     displayName: string;
     email: string;
     adult: boolean;
+}
+
+export interface Shared {
+    translations: Object;
+    radio_opt: any[];
+    
 }
 
 export interface PersonalData {
@@ -89,6 +96,9 @@ export const FORM_SUBMIT_ERROR = 'FORM_SUBMIT_ERROR';
 
 export const GET_USERS = 'GET_USERS';
 export const GET_USERS_SUCCESS = 'GET_USERS_SUCCESS';
-export const UPDATE_USER_DATA = 'UPDATE_USER_DATA';
 export const GET_USERS_ERROR = 'GET_USERS_ERROR';
+export const GET_MESSAGES = 'GET_MESSAGES';
+export const GET_MESSAGES_SUCCESS = 'GET_MESSAGES_SUCCESS';
+export const GET_MESSAGES_ERROR = 'GET_MESSAGES_ERROR';
+export const UPDATE_USER_DATA = 'UPDATE_USER_DATA';
 export const UPDATE_FORM_SINGLE = 'UPDATE_FORM_SINGLE'; 

@@ -6,6 +6,7 @@ import { PasswordFieldComponent } from '../../../core/components/form/password-f
 import { EmailFieldComponent } from '../../../core/components/form/email-field/email-field.component';
 import { CheckboxFieldComponent } from '../../../core/components/form/checkbox-field/checkbox-field.component';
 import { SelectFieldComponent } from '../../../core/components/form/select-field/select-field.component';
+import { RadioFieldComponent } from '../../../core/components/form/radio-field/radio-field.component';
 
 import { MaterialModule } from "../material/material.module";
 
@@ -18,6 +19,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     EmailFieldComponent,
     CheckboxFieldComponent,
     SelectFieldComponent,
+    RadioFieldComponent
   ],
   imports: [
     CommonModule,
@@ -30,6 +32,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     EmailFieldComponent,
     CheckboxFieldComponent,
     SelectFieldComponent,
+    RadioFieldComponent,
     MaterialModule
   ]
 })
