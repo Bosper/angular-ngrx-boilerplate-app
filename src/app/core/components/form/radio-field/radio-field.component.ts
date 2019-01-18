@@ -16,21 +16,19 @@ export class RadioFieldComponent implements OnInit, OnChanges {
   @Input() formGroup: FormGroup;
   @Input() controlName: string;
   @Input() label: string;
-  @Input() id: string; // The unique ID for the radio button.
+  @Input() id: string;
 
   @Input() checked: boolean;
-  @Input() color: ThemePalette; // Theme color palette for the component.
-  @Input() disableRipple: boolean; // Whether ripples are disabled.
+  @Input() color: ThemePalette;
+  @Input() disableRipple: boolean;
   @Input() disabled: boolean; 
-  @Input() labelPosition: 'before' | 'after'; // Whether the label should appear after or before the radio button. Defaults to 'after'
-  // @Input() name: string; // Analog to HTML 'name' attribute used to group radios for unique selection.
+  @Input() labelPosition: 'before' | 'after';
   @Input()  required: boolean;
 
   @Output() change: EventEmitter<MatRadioChange>
-  // Event emitted when the checked state of this radio button changes. Change events are only emitted when the value changes due to user interaction with the radio button (the same behavior as <input type-"radio">).
 
-  inputId: string // ID of the native input element inside <mat-radio-button>
-  radioGroup: MatRadioGroup // The parent radio group. May or may not be present.
+  inputId: string 
+  radioGroup: MatRadioGroup
 
   constructor(
     private _cd: ChangeDetectorRef

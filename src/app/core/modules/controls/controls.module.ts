@@ -7,6 +7,8 @@ import { EmailFieldComponent } from '../../../core/components/form/email-field/e
 import { CheckboxFieldComponent } from '../../../core/components/form/checkbox-field/checkbox-field.component';
 import { SelectFieldComponent } from '../../../core/components/form/select-field/select-field.component';
 import { RadioFieldComponent } from '../../../core/components/form/radio-field/radio-field.component';
+import { RadioGroupFieldComponent } from '../../../core/components/form/radio-group-field/radio-group-field.component';
+import { DatepickerFieldComponent } from '../../../core/components/form/datepicker-field/datepicker-field.component';
 
 import { MaterialModule } from "../material/material.module";
 
@@ -19,7 +21,9 @@ import { ReactiveFormsModule } from '@angular/forms';
     EmailFieldComponent,
     CheckboxFieldComponent,
     SelectFieldComponent,
-    RadioFieldComponent
+    RadioGroupFieldComponent,
+    RadioFieldComponent,
+    DatepickerFieldComponent
   ],
   imports: [
     CommonModule,
@@ -32,8 +36,10 @@ import { ReactiveFormsModule } from '@angular/forms';
     EmailFieldComponent,
     CheckboxFieldComponent,
     SelectFieldComponent,
+    RadioGroupFieldComponent,
     RadioFieldComponent,
-    MaterialModule
+    MaterialModule,
+    DatepickerFieldComponent
   ]
 })
 export class ControlsModule { }

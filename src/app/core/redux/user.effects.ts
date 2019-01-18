@@ -13,16 +13,25 @@ import { HelperService } from "../services/helper.service";
 export class UserEffects {
 
     // Listen for 'GET MESSAGES' action
+    // @Effect()
+    // getTranslation$: Observable<Action> = this.actions$.pipe(
+    //     ofType('GET_MESSAGES'),
+    //     switchMap(() => {
+    //         return this.helperService.getMessages().pipe(map(messages => ({ type: 'GET_MESSAGES_SUCCESS', payload: JSON.parse(messages) })),
+    //             catchError(error => of({ type: 'GET_MESSAGES_ERROR', error: error })))
+    //     })
+    // )
+
     @Effect()
     getTranslation$: Observable<Action> = this.actions$.pipe(
         ofType('GET_MESSAGES'),
-        switchMap(() => {
-            return this.helperService.getMessages().pipe(map(messages => ({ type: 'GET_MESSAGES_SUCCESS', payload: JSON.parse(messages) })),
+        switchMap((lang) => {
+            return this.helperService.getLanguage(lang).pipe(map(messages => ({ type: 'GET_MESSAGES_SUCCESS', payload: JSON.parse(messages) })),
                 catchError(error => of({ type: 'GET_MESSAGES_ERROR', error: error })))
         })
     )
 
-    // Listen for 'GET' action
+    // Listen for 'GET USERS' action
     @Effect()
     getUsers$: Observable<Action> = this.actions$.pipe(
         ofType('GET_USERS'),
@@ -32,12 +41,16 @@ export class UserEffects {
         })
     )
 
-    // Listen for the 'UPDATE' action
-    // @Effect()
-    // updateUser$: Observable<Action> = this.actions$.pipe(
-    //     ofType('UPDATE_USER_DATA'),
-    //     switchMap((user) => { return this.helperService.updateUsers(user).pipe(map(users => ({ type: 'UPDATE_USER_DATA_SUCCESS', payload: JSON.parse(users) })),
-    // )
+    // Listen for the 'UPDATE USER' action
+    @Effect()
+    updateUser$: Observable<Action> = this.actions$.pipe(
+        ofType('UPDATE_USER_DATA'),
+        // switchMap((user) => { return this.helperService.updateUser(user).pipe(map(user => ({ type: 'UPDATE_USER_DATA_SUCCESS', payload: JSON.parse(user) })),
+        switchMap((user) => {
+            return this.helperService.updateUser(user).pipe(map(userResp => { console.log('userEffect: ', user, userResp, typeof (userResp)); return ({ type: 'UPDATE_USER_DATA_SUCCESS', payload: JSON.parse(userResp) }) }),
+                catchError(error => of({ type: 'UPDATE_USER_DATA_ERROR', error: error })))
+        })
+    )
 
     // Listen for the 'ADD' action
     // @Effect()

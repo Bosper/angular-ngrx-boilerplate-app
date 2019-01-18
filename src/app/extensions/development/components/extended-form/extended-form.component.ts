@@ -10,7 +10,7 @@ import { Store, select } from '@ngrx/store';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ExtendedFormComponent implements OnInit, OnChanges {
-  @Input() messages: Object;
+  @Input() messages: any;
   @Input() formGroup: FormGroup;
 
   shared$: Observable<any[]>;

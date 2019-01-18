@@ -17,17 +17,35 @@ export interface NestedForm {
 }
 
 export interface ExtendedForm {
-    firstName: string,
-    lastName: string,
+    firstName: string;
+    lastName: string;
 }
 
 export interface AppStateEXT {
+    // config: InitialConfig;
+    language: LanguageConfig;
+    // role: string,
+    // permissions: string[]
+    // token: string;
     formGroupNested: NestedForm;
     formGroup: BaseData;
     formGroupExtended: ExtendedForm;
     contact: Contact;
     users: User[];
     shared: Shared;
+    translations: Object;
+}
+
+export interface InitialConfig {
+    language: LanguageConfig;
+    role: string,
+    permissions: string[]
+    token: string;
+}
+
+export interface LanguageConfig {
+    defaultLanguage: string;
+    useLanguage: string;
 }
 
 export interface RegisterFormState {
@@ -43,9 +61,7 @@ export interface BaseData {
 }
 
 export interface Shared {
-    translations: Object;
     radio_opt: any[];
-    
 }
 
 export interface PersonalData {
@@ -101,4 +117,6 @@ export const GET_MESSAGES = 'GET_MESSAGES';
 export const GET_MESSAGES_SUCCESS = 'GET_MESSAGES_SUCCESS';
 export const GET_MESSAGES_ERROR = 'GET_MESSAGES_ERROR';
 export const UPDATE_USER_DATA = 'UPDATE_USER_DATA';
+export const UPDATE_USER_DATA_SUCCESS = 'UPDATE_USER_DATA_SUCCESS';
 export const UPDATE_FORM_SINGLE = 'UPDATE_FORM_SINGLE'; 
+export const SET_LANGUAGE = 'SET_LANGUAGE'; 

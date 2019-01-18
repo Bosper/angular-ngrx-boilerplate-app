@@ -1,0 +1,12 @@
+<div [formGroup]="formGroup">
+  <mat-form-field>
+    <mat-label>{{ label }}</mat-label>
+    <input 
+    matInput 
+    [matDatepicker]="picker" 
+    placeholder="{{ placeholder }}"
+    [formControl]="formGroup.controls['date']">
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+</div>

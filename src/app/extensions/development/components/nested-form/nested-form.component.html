@@ -1,8 +1,7 @@
 <form
-  *ngIf="messages; else loading"  
   [formGroup]="formGroup"
   [connectForm]="forms">
-    <div
+    <!-- <div
       formGroupName="formGroup1">
       <h1>{{ messages.authentication.form.steps.one.title }}</h1>
       <uland-text-field
@@ -41,8 +40,7 @@
       [controlName]="'adult'"
       [id]="'agreement'"
       [label]="messages.authentication.adult.label"
-      [checked]=""
-      (click)="agreementCheck()">
+      [checked]="">
       </checkbox-field>
     </div>
     <div 
@@ -56,5 +54,5 @@
         [placeholder]="messages.authentication.firstName.placeholder"
         [isReadOnly]="false"
         ></uland-text-field>
-    </div>
+    </div> -->
 </form>

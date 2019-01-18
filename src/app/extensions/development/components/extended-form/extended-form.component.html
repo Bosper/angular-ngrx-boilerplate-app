@@ -1,24 +1,29 @@
 <form
-  *ngIf="messages; else loading"  
   [formGroup]="formGroup" 
   [connectFormSingle]="'formGroupExtended'">
-  <h1>{{ messages.authentication.title }}</h1>
+  <h1>{{ 'development.registerStepper.extendedData.title' | translate }}</h1>
     <uland-text-field
     [formGroup]="formGroup"
     [controlName]="'firstName'"
     [id]="'firstName'"
-    [label]="messages.authentication.name.label"
-    [placeholder]="messages.authentication.name.placeholder"
+    [label]="'formControls.firstName.label' | translate"
+    [placeholder]="'formControls.firstName.placeholder' | translate"
     [isReadOnly]="false"
     ></uland-text-field>
     <uland-text-field
     [formGroup]="formGroup"
     [controlName]="'lastName'"
     [id]="'lastName'"
-    [label]="messages.authentication.displayName.label"
-    [placeholder]="messages.authentication.displayName.placeholder"
+    [label]="'formControls.lastName.label' | translate"
+    [placeholder]="'formControls.lastName.placeholder' | translate"
     [isReadOnly]="false"
     ></uland-text-field>
+    <cms-datepicker-field
+    [formGroup]="formGroup"
+    [controlName]="'date'"
+    [label]="'formControls.date.label' | translate"
+    [placeholder]="'formControls.date.placeholder' | translate"
+    ></cms-datepicker-field>
     <cms-radio-field
     [formGroup]="formGroup"
     [controlName]="'question'"

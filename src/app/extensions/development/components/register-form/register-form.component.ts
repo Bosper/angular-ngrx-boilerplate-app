@@ -1,5 +1,6 @@
 import { Component, OnInit, OnChanges, AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Input,} from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, FormControlName, FormGroupDirective } from "@angular/forms";
+import { Observable } from 'rxjs'
 
 @Component({
   selector: 'cms-development-form',
@@ -8,7 +9,7 @@ import { FormBuilder, FormGroup, FormControl, FormControlName, FormGroupDirectiv
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class RegisterFormComponent implements OnInit, AfterViewInit, OnChanges {
-  @Input() messages: Object;
+  @Input() $messages: Observable<Object>;
   @Input() formGroup: FormGroup;
   constructor(private _cd: ChangeDetectorRef) { }
 

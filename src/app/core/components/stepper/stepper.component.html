@@ -2,7 +2,7 @@
     <mat-step *ngFor="let step of steps" [stepControl]="step">
         <ng-template matStepLabel>{{ step.controls['formName'].value }}</ng-template>
         <dynamic-component-loader
-        [messages]="messages"
+        [messages]="$messages"
         [formGroup]="step"
         [componentId]="step.controls['formName'].value"
         ></dynamic-component-loader>

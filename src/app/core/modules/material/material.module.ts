@@ -8,8 +8,13 @@ import {
   MatRadioModule,
   MatListModule, 
   MatSelectModule, 
-  MatStepperModule
+  MatStepperModule,
+  MatCardModule,
+  MatDatepickerModule,
+  MAT_DATE_LOCALE
 } from '@angular/material';
+
+import { MatMomentDateModule } from "@angular/material-moment-adapter";
 
 @NgModule({
   declarations: [],
@@ -21,7 +26,10 @@ import {
     MatRadioModule,
     MatListModule, 
     MatSelectModule, 
-    MatStepperModule 
+    MatStepperModule,
+    MatCardModule,
+    MatDatepickerModule,
+    MatMomentDateModule
   ],
   exports: [
     MatButtonModule, 
@@ -30,7 +38,11 @@ import {
     MatRadioModule,
     MatListModule, 
     MatSelectModule, 
-    MatStepperModule
-  ]
+    MatStepperModule,
+    MatCardModule,
+    MatDatepickerModule,
+    MatMomentDateModule
+  ],
+  providers: [{provide: MAT_DATE_LOCALE, useValue: 'en-gb'} ]
 })
 export class MaterialModule { }

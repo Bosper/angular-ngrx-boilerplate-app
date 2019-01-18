@@ -1,3 +1,4 @@
+<h2>{{ title }}</h2>
 <mat-selection-list #items (selectionChange)="onSelection($event, items)" [hidden]="!listItems$">
   <mat-list-option *ngFor="let item of listItems$" [selected]="item.adult" (click)="clickItem(item)" [value]="item">
     {{item.displayName}},{{item.adult}}

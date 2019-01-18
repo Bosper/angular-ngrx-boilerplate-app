@@ -23,11 +23,9 @@ export class TextFieldComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log('cname', this.formGroup, this.controlName);
+    console.log(this.formGroup, this.controlName);
   }
 
-  ngOnChanges () {
-    // this.formGroup.controls[this.controlName].valueChanges.subscribe((data) => console.log(data));
-  }
+  ngOnChanges () { }
 
 }

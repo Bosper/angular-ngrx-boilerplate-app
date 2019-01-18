@@ -1,44 +1,44 @@
 <form
-  *ngIf="messages; else loading"  
   [formGroup]="formGroup" 
   [connectFormSingle]="'formGroup'">
-  <h1>{{ messages.authentication.title }}</h1>
+  <h1>{{ 'development.registerStepper.primaryData.title' | translate }}</h1>
     <uland-text-field
     [formGroup]="formGroup"
     [controlName]="'name'"
     [id]="'name'"
-    [label]="messages.authentication.name.label"
-    [placeholder]="messages.authentication.name.placeholder"
+    [label]="'formControls.name.label' | translate"
+    [placeholder]="'formControls.name.placeholder' | translate"
     [isReadOnly]="false"
     ></uland-text-field>
     <uland-text-field
     [formGroup]="formGroup"
     [controlName]="'displayName'"
     [id]="'displayName'"
-    [label]="messages.authentication.displayName.label"
-    [placeholder]="messages.authentication.displayName.placeholder"
+    [label]="'formControls.displayName.label' | translate"
+    [placeholder]="'formControls.displayName.placeholder' | translate"
     [isReadOnly]="false"
     ></uland-text-field>
     <uland-email-field
     [formGroup]="formGroup"
     [controlName]="'email'"
     [id]="'name'"
-    [label]="messages.authentication.email.label"
-    [placeholder]="messages.authentication.email.placeholder"
+    [label]="'formControls.email.label' | translate"
+    [placeholder]="'formControls.email.placeholder' | translate"
     [isReadOnly]="false"
     ></uland-email-field>
     <cms-select-field
     [formGroup]="formGroup"
     [controlName]="'selectField'"
     [id]="'selectList'"
-    [label]="messages.authentication.displayName.label"
-    [placeholder]="messages.authentication.email.placeholder">
+    [label]="'formControls.displayName.label' | translate"
+    [placeholder]="'formControls.email.placeholder' | translate"
+    [opts]="[{id: 0, displayName: 'Associate', code: 'a', value: 'associate'},{id: 1, displayName: 'Disorder', code: 'b', value: 'disorder'}]">
     </cms-select-field>
     <checkbox-field
     [formGroup]="formGroup"
     [controlName]="'adult'"
     [id]="'agreement'"
-    [label]="messages.authentication.adult.label"
+    [label]="'formControls.adult.label' | translate"
     [checked]="">
     </checkbox-field>
 </form>

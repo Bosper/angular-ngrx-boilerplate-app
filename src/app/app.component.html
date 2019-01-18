@@ -1,10 +1,24 @@
-<div *ngIf="messages; else loading">
-<nav>
-    <a routerLink="/development" routerLinkActive="active">Development</a>
-  </nav>
-<router-outlet></router-outlet>
+<div *ngIf="$messages | async; else loading">
+<mat-card>
+    <mat-card-header>
+        <div mat-card-avatar><img src="assets/svg/nuclear.svg" width="48px" /></div>
+        <mat-card-title>{{ 'main.header.title' | translate }}</mat-card-title>
+        <mat-card-subtitle>{{ 'main.header.subtitle' | translate:param }}</mat-card-subtitle>
+        <cms-select-language [countries]="countries"></cms-select-language>
+    </mat-card-header>
+    <nav>
+      <a routerLink="/development" routerLinkActive="active">Development</a>
+    </nav>
+    <mat-card-content>
+      {{ $lang | async }}
+        <router-outlet></router-outlet>
+    </mat-card-content>
+    <mat-card-footer>
+        {{ 'main.footer.text' | translate}}
+    </mat-card-footer>
+</mat-card>
 </div>
 
 <ng-template #loading>
-  Loading User...
+  Loading...
 </ng-template>

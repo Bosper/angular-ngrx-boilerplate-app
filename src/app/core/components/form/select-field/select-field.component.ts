@@ -1,5 +1,6 @@
-import { Component, Input, OnInit, EventEmitter, Output, ViewEncapsulation } from '@angular/core';
-import { FormGroup, FormControl } from "@angular/forms";
+import { Component, Input, OnInit, OnChanges, EventEmitter, Output, ViewEncapsulation, SimpleChanges } from '@angular/core';
+import { FormGroup } from "@angular/forms";
+import { MatSelectChange } from '@angular/material';
 
 
 @Component({
@@ -8,28 +9,31 @@ import { FormGroup, FormControl } from "@angular/forms";
   styleUrls: ['./select-field.component.css'],
   encapsulation: ViewEncapsulation.None,
 })
-export class SelectFieldComponent implements OnInit {
-  disableSelect: FormControl;
-  // @Output() change: EventEmitter<any> = new EventEmitter();
+export class SelectFieldComponent implements OnInit, OnChanges {
+  @Output() change: EventEmitter<any> = new EventEmitter();
   @Input('formGroup') formGroup: FormGroup;
   @Input('controlName') controlName: string;
   @Input('label') label: string;
-  // @Input('value') value: string;
-  // @Input('dataStorage') dataStorage: string;
   @Input('placeholder') placeholder: string;
   @Input('id') id: string;
+  @Input() disableSelect: boolean;
+  @Input() opts: any[];
+  @Input() model: Object;
+  @Input() suffix: Boolean;
 
   // @Input('isReadOnly') isReadOnly: boolean;
-  constructor() {
-    this.disableSelect = new FormControl(false);
+  constructor() { }
+
+  ngOnInit() { }
+
+  ngOnChanges (changes: SimpleChanges) { }
+
+  selectionChange(changes: MatSelectChange) {
+    console.log('change_selection: ', changes);
+    this.change.emit(changes);
   }
 
-  ngOnInit() {
-    console.log('disableSelect', this.disableSelect);
-  }
-
-  ngOnChanges () {
-    // this.formGroup.controls[this.controlName].valueChanges.subscribe((data) => console.log(data));
-    
+  openedChange(changes) {
+    console.log("opened_change: ", changes);
   }
 }

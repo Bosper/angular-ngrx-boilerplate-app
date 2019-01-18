@@ -5,8 +5,7 @@ import {
   EventEmitter, 
   OnInit, 
   OnChanges, 
-  OnDestroy, 
-  AfterViewInit, 
+  OnDestroy,
   ChangeDetectorRef, 
   ViewChild, 
   ComponentRef,
@@ -18,17 +17,19 @@ import { ComponentLoaderDirective } from "../../directives/component-loader.dire
 import { HelperService } from "../../services/helper.service";
 import { AdItem } from "../../models/models";
 
+import { Observable } from 'rxjs';
+
 @Component({
   selector: 'dynamic-component-loader',
   templateUrl: './dynamic-component-loader.component.html',
   styleUrls: ['./dynamic-component-loader.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class DynamicComponentLoader implements OnInit, OnChanges, OnDestroy, AfterViewInit {
+export class DynamicComponentLoader implements OnInit, OnChanges, OnDestroy {
   componentRef: ComponentRef<any>;
   adsItems: AdItem;
   @Input() formGroup: FormGroup;
-  @Input() messages: Object;
+  @Input() messages: Observable<Object>;
   @Input() componentId: string;
 
   @ViewChild(ComponentLoaderDirective) componentLoader: ComponentLoaderDirective;
@@ -42,24 +43,20 @@ export class DynamicComponentLoader implements OnInit, OnChanges, OnDestroy, Aft
     this.adsItems = this._helperService.getComponent(this.componentId);
 
     this.loadComponent();
-    console.log('Dynamic Component has been initialized');
+    console.log('dynamic_component_initialized');
     
   }
     
   callMeFromParent() : void {
-    console.log('Hello, i am method of dynamic component')
+    console.log('dynamic_component_method')
   }
     
   ngOnDestroy(): void {
-    console.log('I have been destroyed!');
+    console.log('dynamic_component_destroyed');
   }
 
   ngOnChanges() {
     this._changeDetectionRef.markForCheck();
-  }
-
-  ngAfterViewInit() {
-
   }
 
   loadComponent() {

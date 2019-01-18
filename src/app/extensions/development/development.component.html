@@ -1,9 +1,11 @@
+<p>{{ 'test' | translate }}</p>
 <cms-stepper
-[formGroup]="formGroup"
-[formGroup2]="formGroup2"
-[messages]="translations$ | async"
-[steps]="steps">
+  [formGroup]="formGroup"
+  [formGroup2]="formGroup2"
+  [$messages]="$messages | async"
+  [steps]="steps">
 </cms-stepper>
 <cms-list
-[listItems$]='listItems$ | async'>
+  [listItems$]='listItems$ | async'
+  [title]="'Checklist Component'">
 </cms-list>

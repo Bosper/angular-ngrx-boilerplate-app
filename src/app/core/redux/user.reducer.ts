@@ -1,9 +1,18 @@
 import { Action, ActionReducer } from '@ngrx/store';
 import { FormGroupState, createFormGroupState, formGroupReducer } from 'ngrx-forms';
 
-import { AppState, GET_MESSAGES, GET_MESSAGES_SUCCESS, UPDATE_FORM, UPDATE_FORM_SINGLE, GET_USERS, GET_USERS_ERROR, FORM_SUBMIT_SUCCESS, GET_USERS_SUCCESS, UPDATE_USER_DATA, BaseData, RegisterFormState, AppStateEXT } from "../models/models";
+import { SET_LANGUAGE, GET_MESSAGES, GET_MESSAGES_SUCCESS, UPDATE_FORM, UPDATE_FORM_SINGLE, GET_USERS, GET_USERS_ERROR, FORM_SUBMIT_SUCCESS, GET_USERS_SUCCESS, UPDATE_USER_DATA, BaseData, RegisterFormState, AppStateEXT, UPDATE_USER_DATA_SUCCESS } from "../models/models";
 
 const initialState: AppStateEXT = {
+    // config: {
+        language: {
+            defaultLanguage: 'en',
+            useLanguage: 'en'
+        },
+        // role: 'GUEST_ROLE',
+        // permissions: [''],
+        // token: '',
+    // },
     formGroupNested: {
         formGroup1: {
             name: 'husky999',
@@ -45,9 +54,9 @@ const initialState: AppStateEXT = {
                 message: 'Hell, no f* way!',
                 value: '2'
             }
-        ],
-        translations: null
-    }
+        ]
+    },
+    translations: {}
 }
 
 const userState: BaseData[] = [];
@@ -59,9 +68,14 @@ export function mainReducer(state: AppStateEXT = initialState, action) {
             return { ...state }
 
         case GET_MESSAGES_SUCCESS:
-            const trans = { ...action.payload };
+            const translations = { ...action.payload };
 
-            return { ...state,  translations: state.shared.translations = trans }
+            return { ...state,  translations: translations };
+
+        case SET_LANGUAGE:
+            const updatedLang = {...action.payload.value}
+            
+            return { ...state, language: state.language.useLanguage = updatedLang }
 
         case UPDATE_FORM:
             return { ...state, [action.payload.path.formGroupNested]: action.payload.value} 
@@ -75,8 +89,17 @@ export function mainReducer(state: AppStateEXT = initialState, action) {
         case GET_USERS_SUCCESS:
             return { ...state, users: action.payload }
 
+        // case UPDATE_USER_DATA:
+        //     const updatedUser = {...action.payload.value, adult: action.payload.option};
+
+        //     return { ...state, users: state.users.map((user) => user.id === updatedUser.id ? updatedUser : {...user})}
         case UPDATE_USER_DATA:
-            const updatedUser = {...action.payload.value, adult: action.payload.option};
+            // const updatedUser = {...action.payload.value, adult: action.payload.option};
+
+            return { ...state }
+
+        case UPDATE_USER_DATA_SUCCESS:
+            const updatedUser = { ...action.payload };
 
             return { ...state, users: state.users.map((user) => user.id === updatedUser.id ? updatedUser : {...user})}
 

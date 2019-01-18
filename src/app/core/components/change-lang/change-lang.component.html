@@ -1,0 +1,11 @@
+<cms-select-field
+[formGroup]="formGroupLang"
+[controlName]="'useLanguage'"
+[id]="'selectCountry'"
+[label]="'main.header.language.select.label' | translate"
+[placeholder]="'main.header.language.select.placeholder' | translate"
+[opts]="countries"
+(change)="change($event)"
+[suffix]="country"
+[connectFormSingle]="'language'">
+</cms-select-field>

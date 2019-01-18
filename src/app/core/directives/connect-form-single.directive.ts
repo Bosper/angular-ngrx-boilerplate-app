@@ -35,14 +35,15 @@ export class ConnectFormSingleDirective {
     .pipe(select('reducer'))
     .pipe(take(1))
     .subscribe(val => {
-      console.log('patchvalue2: ', val, this.path, this.formGroupDirective), 
+      console.log('connect_form: ', val, this.path, this.formGroupDirective, this.path.length);
+      
       this.formGroupDirective.form.patchValue(val[this.path]);
     })
       
 
     this.formChange$ = this.formGroupDirective.form.valueChanges
       .subscribe(value => {
-        console.log('FORM_CHANGE: ', value, '\nPATH: ', this.path, this.formGroupDirective);
+        console.log('connect_form_change: ', value, '\npath: ', this.path, this.formGroupDirective);
 
         this.store.dispatch({
           type: UPDATE_FORM_SINGLE,

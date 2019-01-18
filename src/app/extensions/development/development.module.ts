@@ -1,20 +1,16 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { HttpClient } from '@angular/common/http';
 import { DevelopmentComponent } from './development.component';
 import { RegisterFormComponent } from './components/register-form/register-form.component';
 
-import { FormsModule, ReactiveFormsModule, FormGroupDirective } from '@angular/forms';
-import { ControlsModule } from "../../core/modules/controls/controls.module";
-import { MaterialModule } from "../../core/modules/material/material.module";
+import { CmsCommonModule } from "../../core/modules/common/common.module";
 
-import { ConnectFormDirective } from '../../core/directives/connect-form.directive';
-import { ConnectFormSingleDirective } from '../../core/directives/connect-form-single.directive';
-import { ComponentLoaderDirective } from '../../core/directives/component-loader.directive';
+import { FormsModule, ReactiveFormsModule, FormGroupDirective } from '@angular/forms';
 import { HelperService } from '../../core/services/helper.service';
 
 import { StepperComponent } from '../../core/components/stepper/stepper.component';
 import { ListComponent } from '../../core/components/list/list.component';
-import { DynamicComponentLoader } from '../../core/components/dynamic-component-loader/dynamic-component-loader.component';
 import { ExtendedFormComponent } from './components/extended-form/extended-form.component';
 import { NestedFormComponent } from './components/nested-form/nested-form.component';
 
@@ -23,10 +19,6 @@ import { NestedFormComponent } from './components/nested-form/nested-form.compon
     DevelopmentComponent,
     RegisterFormComponent,
     ExtendedFormComponent,
-    ConnectFormDirective,
-    ConnectFormSingleDirective,
-    ComponentLoaderDirective,
-    DynamicComponentLoader,
     StepperComponent,
     ListComponent,
     NestedFormComponent
@@ -35,18 +27,14 @@ import { NestedFormComponent } from './components/nested-form/nested-form.compon
     CommonModule,
     FormsModule, 
     ReactiveFormsModule,
-    ControlsModule,
-    MaterialModule,
+    CmsCommonModule
   ],
   exports: [
     DevelopmentComponent,
-    ConnectFormDirective,
-    ConnectFormSingleDirective,
-    ComponentLoaderDirective,
-    DynamicComponentLoader,
-    StepperComponent
+    CmsCommonModule,
+    StepperComponent,
   ],
   providers: [HelperService, FormGroupDirective,],
   entryComponents: [RegisterFormComponent, ExtendedFormComponent, NestedFormComponent]
 })
-export class DevelopmentModule {}
+export class ApplicationModule {}

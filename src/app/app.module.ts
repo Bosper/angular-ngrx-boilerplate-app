@@ -1,13 +1,14 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule, LOCALE_ID} from '@angular/core';
-import { HttpClientModule } from "@angular/common/http";
+
+import { NgModule} from '@angular/core';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule, FormGroupDirective } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { ControlsModule } from "./core/modules/controls/controls.module";
 import { MaterialModule } from "./core/modules/material/material.module";
 
-import { DevelopmentModule } from "./extensions/development/development.module";
+import { ApplicationModule } from "./extensions/development/development.module";
 
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from "@ngrx/effects";
@@ -21,35 +22,39 @@ import { AppComponent } from './app.component';
 // Outer modules imports
 import { mainReducer } from './core/redux/user.reducer';
 import { environment } from '../environments/environment';
-import { RadioGroupFieldComponent } from './core/components/form/radio-group-field/radio-group-field.component';
 import { CmsRoutingModule } from './cms-routing.module';
+import { ChangeLangComponent } from './core/components/change-lang/change-lang.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    RadioGroupFieldComponent
+    ChangeLangComponent,
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
-    DevelopmentModule,
+    ApplicationModule,
       ControlsModule,
       MaterialModule,
     HttpClientModule,
-    StoreModule.forRoot({reducer: mainReducer}),
-    EffectsModule.forRoot([UserEffects]),
-    StoreDevtoolsModule.instrument({
-      maxAge: 25,
-      logOnly: environment.production,
-      name: 'Redux Store',
-    }),
+    // StoreModule.forRoot({reducer: mainReducer}),
+    // EffectsModule.forRoot([UserEffects]),
+    // StoreDevtoolsModule.instrument({
+    //   maxAge: 25,
+    //   logOnly: environment.production,
+    //   name: 'Redux Store',
+    // }),
     CmsRoutingModule
-
   ],
   exports: [],
-  providers: [HelperService, FormGroupDirective],
+  providers: [
+    HelperService, 
+    FormGroupDirective, 
+ 
+    
+  ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

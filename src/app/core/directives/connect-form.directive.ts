@@ -36,14 +36,14 @@ export class ConnectFormDirective {
     .pipe(select('reducer'))
     .pipe(take(1))
     .subscribe(val => {
-      console.log('patchvalue: ', val, this.path), 
+      console.log('connect_form_multi: ', val, this.path), 
       this.path.formGroups.forEach(formGroup => this.formGroupDirective.form.controls[formGroup].patchValue(val.formGroupNested[formGroup]));
     })
       
 
     this.formChange$ = this.formGroupDirective.form.valueChanges
       .subscribe(value => {
-        console.log('FORM_CHANGE: ', value, '\nPATH: ', this.path, this.formGroupDirective);
+        console.log('connect_form_multi_change: ', value, this.path);
 
         this.store.dispatch({
           type: UPDATE_FORM,
@@ -54,15 +54,14 @@ export class ConnectFormDirective {
         });
       });
 
-      // this.formSuccess$ = this.actions$
-      // .ofType(FORM_SUBMIT_SUCCESS)
-      // .filter(( { payload } ) => payload.path === this.path)
-      // .subscribe(() => {
-      //   this.formGroupDirective.form.reset();
-      //   this.success.emit();
-      // });
-
-      
+      //ToDo: Form reset
+      /*this.formSuccess$ = this.actions$
+      .ofType(FORM_SUBMIT_SUCCESS)
+      .filter(( { payload } ) => payload.path === this.path)
+      .subscribe(() => {
+        this.formGroupDirective.form.reset();
+        this.success.emit();
+      });*/ 
   }
 
   ngOnDestroy() {

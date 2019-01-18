@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation, ChangeDetectionStrategy, ChangeDetectorRef, Input } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, AbstractControl } from "@angular/forms";
 
 import { Store, select } from '@ngrx/store';
@@ -23,7 +23,7 @@ export class DevelopmentComponent implements OnInit {
   formGroupNested: FormGroup;
   steps: Array<AbstractControl>;
   listItems$: Observable<User[]>;
-  translations$: Observable<Object[]>;
+  $messages: Observable<Object>;
 
   constructor(
     private _helper: HelperService, 
@@ -35,7 +35,7 @@ export class DevelopmentComponent implements OnInit {
     this.store.dispatch(getUsers());
 
     this.listItems$ = this.store.pipe(select(state => state.reducer['users']));
-    this.translations$ = this.store.pipe(select(state => state.reducer['shared'].translations));
+    this.$messages = this.store.pipe(select(state => state.reducer['translations']));
 
     this.formGroupNested = _formBuilder.group({
       formName: new FormControl('NESTED_FORM_COMPONENT'),
@@ -65,7 +65,8 @@ export class DevelopmentComponent implements OnInit {
       formName: new FormControl('EXTENDED_FORM_COMPONENT'),
       firstName: new FormControl(),
       lastName: new FormControl(),
-      question: new FormControl()
+      question: new FormControl(),
+      date: new FormControl()
     });
 
     this.steps.push(this.formGroup, this.formGroup2, this.formGroupNested);
