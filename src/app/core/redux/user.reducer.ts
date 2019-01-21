@@ -1,7 +1,7 @@
 import { Action, ActionReducer } from '@ngrx/store';
 import { FormGroupState, createFormGroupState, formGroupReducer } from 'ngrx-forms';
 
-import { SET_LANGUAGE, GET_MESSAGES, GET_MESSAGES_SUCCESS, UPDATE_FORM, UPDATE_FORM_SINGLE, GET_USERS, GET_USERS_ERROR, FORM_SUBMIT_SUCCESS, GET_USERS_SUCCESS, UPDATE_USER_DATA, BaseData, RegisterFormState, AppStateEXT, UPDATE_USER_DATA_SUCCESS } from "../models/models";
+import { GET_MESSAGES, GET_MESSAGES_SUCCESS, UPDATE_FORM, UPDATE_FORM_NEST, GET_USERS, GET_USERS_ERROR, FORM_SUBMIT_SUCCESS, GET_USERS_SUCCESS, UPDATE_USER_DATA, BaseData, RegisterFormState, AppStateEXT, UPDATE_USER_DATA_SUCCESS, UPDATE_CONFIG } from "../models/models";
 
 const initialState: AppStateEXT = {
     // config: {
@@ -72,16 +72,11 @@ export function mainReducer(state: AppStateEXT = initialState, action) {
 
             return { ...state,  translations: translations };
 
-        case SET_LANGUAGE:
-            const updatedLang = {...action.payload.value}
-            
-            return { ...state, language: state.language.useLanguage = updatedLang }
-
-        case UPDATE_FORM:
+        case UPDATE_FORM_NEST:
             return { ...state, [action.payload.path.formGroupNested]: action.payload.value} 
 
-        case UPDATE_FORM_SINGLE:
-            return { ...state, [action.payload.path]: action.payload.value }
+        case UPDATE_FORM:
+            return { ...state, [action.payload.path]: {...action.payload.value} }
 
         case GET_USERS:
             return { ...state }
@@ -89,12 +84,7 @@ export function mainReducer(state: AppStateEXT = initialState, action) {
         case GET_USERS_SUCCESS:
             return { ...state, users: action.payload }
 
-        // case UPDATE_USER_DATA:
-        //     const updatedUser = {...action.payload.value, adult: action.payload.option};
-
-        //     return { ...state, users: state.users.map((user) => user.id === updatedUser.id ? updatedUser : {...user})}
         case UPDATE_USER_DATA:
-            // const updatedUser = {...action.payload.value, adult: action.payload.option};
 
             return { ...state }
 

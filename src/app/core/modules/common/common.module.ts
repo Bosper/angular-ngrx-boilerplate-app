@@ -6,7 +6,7 @@ import { ControlsModule } from "../controls/controls.module";
 import { MaterialModule } from "../material/material.module";
 
 import { ConnectFormDirective } from '../../directives/connect-form.directive';
-import { ConnectFormSingleDirective } from '../../directives/connect-form-single.directive';
+import { ConnectFormNestDirective } from '../../directives/connect-nest-form.directive';
 
 import { ComponentLoaderDirective } from '../../directives/component-loader.directive';
 import { DynamicComponentLoader } from '../../components/dynamic-component-loader/dynamic-component-loader.component';
@@ -57,7 +57,7 @@ export class MyMissingTranslationHandler implements MissingTranslationHandler {
 @NgModule({
   declarations: [
     ConnectFormDirective,
-    ConnectFormSingleDirective,
+    ConnectFormNestDirective,
     ComponentLoaderDirective,
     DynamicComponentLoader,
   ],
@@ -86,7 +86,7 @@ export class MyMissingTranslationHandler implements MissingTranslationHandler {
   ],
   exports: [
     ConnectFormDirective,
-    ConnectFormSingleDirective,
+    ConnectFormNestDirective,
     ComponentLoaderDirective,
     DynamicComponentLoader,
     ControlsModule,

@@ -25,10 +25,11 @@ import { environment } from '../environments/environment';
 import { CmsRoutingModule } from './cms-routing.module';
 import { ChangeLangComponent } from './core/components/change-lang/change-lang.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
-    ChangeLangComponent,
+    ChangeLangComponent
   ],
   imports: [
     BrowserModule,

@@ -33,6 +33,7 @@ export class ChangeLangComponent implements OnInit, DoCheck {
   ngOnInit() {
     this.$lang.subscribe((lang: string) => this.country = this.countries.find((country) => country.code === lang));
     this.formGroupLang = new FormGroup({
+      defaultLanguage: new FormControl('en'),
       useLanguage: new FormControl('')
     })
   }
@@ -45,7 +46,6 @@ export class ChangeLangComponent implements OnInit, DoCheck {
   change(change: MatSelectChange) {
     console.log("change_lang: ", change);
     this.dateAdapter.setLocale(change.value)
-    // this.store.dispatch({type: SET_LANGUAGE, payload: {value: change.value}});
   }
 
 }

@@ -68,6 +68,8 @@ export class DevelopmentComponent implements OnInit {
       question: new FormControl(),
       date: new FormControl()
     });
+    console.log('DEV: ', this.formGroup);
+    
 
     this.steps.push(this.formGroup, this.formGroup2, this.formGroupNested);
   }
