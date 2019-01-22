@@ -35,6 +35,27 @@ rxjs                    v6.3.3
 
 typescript              v3.1.6
 
+
+## Namespaces
+
+Project is separated for structure:
+
+```javascript
+  "extension": {
+     "feature": {
+        "intention": {
+          ["component[]"]
+        }
+      } 
+  }
+```
+
+
+## Store 
+
+For clear store purposes, all state parametres have to be done with @ngrx/entity. Every entity can be modified from extension component, or feature component.
+
+
 ## Development server
 
 Clone and run API from Bosper [express-rest-api](https://github.com/Bosper/express-rest-api) and run `npm run dev`
@@ -48,8 +69,4 @@ Run `ng build` to build the project. The build artifacts will be stored in the `
 
 ## Running unit tests
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+Not implemented.
