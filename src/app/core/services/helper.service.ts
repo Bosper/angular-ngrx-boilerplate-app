@@ -41,6 +41,10 @@ export class HelperService {
     return this.http.get<string>(this.API_END_POINT + 'getUsers');
   }
 
+  getUsersAction(): Observable<any> {
+    return this.http.get<any>(this.API_END_POINT + 'getUsers');
+  }
+
   updateUser(user): Observable<string> {
     console.log('_service_get_user: ', user.payload.value.id, user.payload.option);
     return this.http.post<string>(this.API_END_POINT + 'updateUser', JSON.stringify({id: user.payload.value.id, value: user.payload.option}), httpOptions);

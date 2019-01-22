@@ -1,7 +1,7 @@
-import { Action, ActionReducer } from '@ngrx/store';
-import { FormGroupState, createFormGroupState, formGroupReducer } from 'ngrx-forms';
+import { createEntityAdapter } from '@ngrx/entity';
 
-import { GET_MESSAGES, GET_MESSAGES_SUCCESS, UPDATE_FORM, UPDATE_FORM_NEST, GET_USERS, GET_USERS_ERROR, FORM_SUBMIT_SUCCESS, GET_USERS_SUCCESS, UPDATE_USER_DATA, BaseData, RegisterFormState, AppStateEXT, UPDATE_USER_DATA_SUCCESS, UPDATE_CONFIG } from "../models/models";
+import { User, GET_MESSAGES, GET_MESSAGES_SUCCESS, UPDATE_FORM, UPDATE_FORM_NEST, GET_USERS, GET_USERS_ERROR, FORM_SUBMIT_SUCCESS, GET_USERS_SUCCESS, UPDATE_USER_DATA, BaseData, RegisterFormState, AppStateEXT, UPDATE_USER_DATA_SUCCESS, UPDATE_CONFIG } from "../models/models";
+import { ActionTypes } from './form.actions';
 
 const initialState: AppStateEXT = {
     // config: {
@@ -56,12 +56,11 @@ const initialState: AppStateEXT = {
             }
         ]
     },
-    translations: {}
-}
+    translations: {},
+    users_entity: null
+};
 
-const userState: BaseData[] = [];
-
-export function mainReducer(state: AppStateEXT = initialState, action) {
+export function formReducer(state: AppStateEXT = initialState, action) {
     switch (action.type) {
 
         case GET_MESSAGES:

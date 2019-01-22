@@ -14,18 +14,6 @@ import { DynamicComponentLoader } from '../../components/dynamic-component-loade
 import { TranslateModule, TranslateLoader, MissingTranslationHandler, MissingTranslationHandlerParams } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
-
-import { StoreModule, Store } from '@ngrx/store';
-import { EffectsModule } from "@ngrx/effects";
-import { UserEffects } from "../../redux/user.effects";
-import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-
-// Outer modules imports
-import { mainReducer } from '../../redux/user.reducer';
-import { environment } from '../../../../environments/environment';
-
 export function createTranslateLoader(http: HttpClient) {
   const url: string = 'http://localhost:4800/api/messages/';
   console.log('MOD STORE: ', http);
@@ -38,21 +26,6 @@ export class MyMissingTranslationHandler implements MissingTranslationHandler {
       return '';
   }
 }
-
-// export class CustomLoader implements TranslateLoader {
-//   url: string = 'http://localhost:4800/api/messages/';
-//   constructor(private http: HttpClient, private store: Store<any>) {}
-
-//   public getTranslation(lang): Observable<any> {
-//     return this.http.get<string>(this.url + lang).pipe(map(
-//       (res: any) => {
-//         console.log('module: res: ', res)
-//         return res;
-//       }
-//     ));
-
-//   }
-// }
 
 @NgModule({
   declarations: [
@@ -68,21 +41,9 @@ export class MyMissingTranslationHandler implements MissingTranslationHandler {
     TranslateModule.forRoot(
       {
         missingTranslationHandler: {provide: MissingTranslationHandler, useClass: MyMissingTranslationHandler},
-        useDefaultLang: false,
-      //   loader: {
-      //     provide: TranslateLoader,
-      //     useClass: CustomLoader,
-      //     deps: [HttpClient]
-      // }
+        useDefaultLang: false
     }
   ),
-  StoreModule.forRoot({reducer: mainReducer}),
-  EffectsModule.forRoot([UserEffects]),
-  StoreDevtoolsModule.instrument({
-    maxAge: 25,
-    logOnly: environment.production,
-    name: 'Redux Store',
-  }),
   ],
   exports: [
     ConnectFormDirective,
@@ -91,11 +52,7 @@ export class MyMissingTranslationHandler implements MissingTranslationHandler {
     DynamicComponentLoader,
     ControlsModule,
     MaterialModule,
-    TranslateModule,
-    StoreModule,
-    EffectsModule,
-    StoreDevtoolsModule
-
+    TranslateModule
   ]
 })
 export class CmsCommonModule { }

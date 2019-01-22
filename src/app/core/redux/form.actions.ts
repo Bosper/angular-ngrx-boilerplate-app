@@ -1,4 +1,11 @@
-import { FORM_SUBMIT_SUCCESS, GET_USERS, GET_MESSAGES, GET_USERS_ERROR, GET_USERS_SUCCESS } from "../models/models";
+import { FORM_SUBMIT_SUCCESS, GET_USERS, GET_MESSAGES, GET_USERS_ERROR, GET_USERS_SUCCESS, User } from "../models/models";
+import { Action } from "@ngrx/store";
+
+export enum ActionTypes {
+  GET_USERS_REQUEST = '[Development] Get Users Request',
+  GET_USERS_FAILURE = '[Development] Get Users Failure',
+  GET_USERS_SUCCESS = '[Development] Get Users Success'
+}
 
 export const formSuccessAction = path => ({
   type: FORM_SUBMIT_SUCCESS,

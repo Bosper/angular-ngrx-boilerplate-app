@@ -2,25 +2,17 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Action, ActionReducer } from '@ngrx/store';
 import { Actions, Effect, ofType } from '@ngrx/effects';
-import { Observable, of } from 'rxjs';
+import { Observable, of, of as observableOf } from 'rxjs';
 import { catchError, map, mergeMap, switchMap } from 'rxjs/operators';
 
 import { ActionExt } from "../models/models";
 
 import { HelperService } from "../services/helper.service";
 
-@Injectable()
-export class UserEffects {
+import * as featureActions from './root-store/user/users.actions';
 
-    // Listen for 'GET MESSAGES' action
-    // @Effect()
-    // getTranslation$: Observable<Action> = this.actions$.pipe(
-    //     ofType('GET_MESSAGES'),
-    //     switchMap(() => {
-    //         return this.helperService.getMessages().pipe(map(messages => ({ type: 'GET_MESSAGES_SUCCESS', payload: JSON.parse(messages) })),
-    //             catchError(error => of({ type: 'GET_MESSAGES_ERROR', error: error })))
-    //     })
-    // )
+@Injectable()
+export class FormEffects {
 
     @Effect()
     getTranslation$: Observable<Action> = this.actions$.pipe(
@@ -31,7 +23,6 @@ export class UserEffects {
         })
     )
 
-    // Listen for 'GET USERS' action
     @Effect()
     getUsers$: Observable<Action> = this.actions$.pipe(
         ofType('GET_USERS'),

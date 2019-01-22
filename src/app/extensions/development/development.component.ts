@@ -10,6 +10,13 @@ import { HelperService } from "../../core/services/helper.service";
 
 import { Observable } from 'rxjs';
 
+import { AppStateEXT } from "../../core/models/models";
+
+import {
+  UsersFeatureStoreActions,
+  UsersFeatureStoreSelectors
+} from '../../core/redux/root-store/user';
+
 @Component({
   selector: 'cms-development',
   templateUrl: './development.component.html',
@@ -18,6 +25,10 @@ import { Observable } from 'rxjs';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DevelopmentComponent implements OnInit {
+  userFeatureItems$: Observable<User[]>;
+  error$: Observable<string>;
+  isLoading$: Observable<boolean>;
+
   formGroup: FormGroup;
   formGroup2: FormGroup;
   formGroupNested: FormGroup;
@@ -30,8 +41,10 @@ export class DevelopmentComponent implements OnInit {
     private store: Store<any>,
     private _cd: ChangeDetectorRef,
     private _formBuilder: FormBuilder,
+    private store$: Store<AppStateEXT>
   ) {
     this.steps = new Array;
+    
     this.store.dispatch(getUsers());
 
     this.listItems$ = this.store.pipe(select(state => state.reducer['users']));
@@ -74,7 +87,23 @@ export class DevelopmentComponent implements OnInit {
     this.steps.push(this.formGroup, this.formGroup2, this.formGroupNested);
   }
 
-  ngOnInit() { }
+  ngOnInit() {
+    this.userFeatureItems$ = this.store$.select(
+      UsersFeatureStoreSelectors.selectAllUsersFeatureItems
+    );
+
+    this.error$ = this.store$.select(
+      UsersFeatureStoreSelectors.selectUsersFeatureError
+    );
+
+    this.isLoading$ = this.store$.select(
+      UsersFeatureStoreSelectors.selectUsersFeatureIsLoading
+    );
+
+    this.store$.dispatch(
+      new UsersFeatureStoreActions.GetUsersRequestAction()
+    );
+  }
 
   ngDoCheck() {
     this._cd.markForCheck();

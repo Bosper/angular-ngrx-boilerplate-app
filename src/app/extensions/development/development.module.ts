@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HttpClient } from '@angular/common/http';
 import { DevelopmentComponent } from './development.component';
 import { RegisterFormComponent } from './components/register-form/register-form.component';
 
@@ -34,7 +33,7 @@ import { NestedFormComponent } from './components/nested-form/nested-form.compon
     CmsCommonModule,
     StepperComponent,
   ],
-  providers: [HelperService, FormGroupDirective,],
+  providers: [HelperService, FormGroupDirective],
   entryComponents: [RegisterFormComponent, ExtendedFormComponent, NestedFormComponent]
 })
 export class ApplicationModule {}

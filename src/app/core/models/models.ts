@@ -1,5 +1,6 @@
 import { Action } from "@ngrx/store";
 import { Type } from '@angular/core';
+import { UsersFeatureStoreState } from "../redux/root-store/user";
 
 export interface AppState {
     formGroup: BaseData;
@@ -21,6 +22,11 @@ export interface ExtendedForm {
     lastName: string;
 }
 
+// export interface RootStoreState {
+//     root: AppStateEXT;
+//     users: State;
+// }
+
 export interface AppStateEXT {
     // config: InitialConfig;
     language: LanguageConfig;
@@ -34,6 +40,7 @@ export interface AppStateEXT {
     users: User[];
     shared: Shared;
     translations: Object;
+    users_entity: UsersFeatureStoreState.State;
 }
 
 export interface InitialConfig {
@@ -77,7 +84,7 @@ export interface Contact {
 }
 
 export interface User {
-    id: number;
+    id: string;
     name: string;
     displayName: string;
     email: string;
